@@ -9,11 +9,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Marque {
 
 	//Variable
+	private int id;
 	private String nom;
 	private Date dateCrea;
 	private String paysOrigine;
 	
 	//Getter et Setteur
+	@XmlElement(name="id_marque")
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	@XmlElement(name="nom_marque")
 	public String getNom() {
 		return nom;
