@@ -9,10 +9,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Reservation {
 
 	//Variable
+	private int id;
 	private Date dateRes;
 	private Voiture voiture;
 	
 	//Getter et Setteur
+	@XmlElement(name="id_reservation")
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	@XmlElement(name="dateres_reservation")
 	public Date getDateRes() {
 		return dateRes;
