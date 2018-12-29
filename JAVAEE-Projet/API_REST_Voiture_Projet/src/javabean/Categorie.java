@@ -7,10 +7,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Categorie {
 
 	//Variable
+	private int id;
 	private String nom;
 	private String description;
 	
 	//Getter et Setteur
+	@XmlElement(name="id_categorie")
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	@XmlElement(name="nom_categorie")
 	public String getNom() {
 		return nom;
@@ -32,8 +42,9 @@ public class Categorie {
 	//Constructeur
 	public Categorie() {}
 	
-	public Categorie(String nom, String description)
+	public Categorie(int id, String nom, String description)
 	{
+		this.id = id;
 		this.nom = nom;
 		this.description = description;
 	}
