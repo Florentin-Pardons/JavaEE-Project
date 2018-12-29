@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Modele {
 
 	//Variable
+	private int id;
 	private String nom;
 	private int nbPorte;
 	private int volumeCoffre;
@@ -14,6 +15,15 @@ public class Modele {
 	private Categorie categorie;
 	
 	//Getter et Setteur
+	@XmlElement(name="id_modele")
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+		
 	@XmlElement(name="nom_modele")
 	public String getNom() {
 		return nom;
