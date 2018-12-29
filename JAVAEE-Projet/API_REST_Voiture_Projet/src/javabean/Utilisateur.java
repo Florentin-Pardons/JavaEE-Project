@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Utilisateur {
 
 	//Variable
+	private int id;
 	private String mail;
 	private String mp;
 	private String nom;
@@ -16,11 +17,17 @@ public class Utilisateur {
 	private Date dateNaissance;
 	private String adresse;
 	private boolean role;
-	/*private List<Voiture> listVoiture;
-	private List<Commentaire> listVommentaire;
-	private List<Reservation> listReservation;*/
 
 	//Getter et Setteur
+	@XmlElement(name="id_utilisateur")
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	@XmlElement(name="mail_utilisateur")
 	public String getMail() {
 		return mail;
@@ -124,6 +131,20 @@ public class Utilisateur {
 		this.dateNaissance = dateNaissance;
 		this.adresse = adresse;
 		this.role = role;
+		/*this.listVoiture = new ArrayList<Voiture>();
+		this.listVommentaire = new ArrayList<Commentaire>();
+		this.listReservation = new ArrayList<Reservation>();*/
+	}
+	
+	public Utilisateur(String mail, String mp, String nom, String prenom, String adresse) 
+	{
+		this.mail = mail;
+		this.mp = mp;
+		this.nom = nom;
+		this.prenom = prenom;
+		//this.dateNaissance = dateNaissance;
+		this.adresse = adresse;
+		//this.role = role;
 		/*this.listVoiture = new ArrayList<Voiture>();
 		this.listVommentaire = new ArrayList<Commentaire>();
 		this.listReservation = new ArrayList<Reservation>();*/
