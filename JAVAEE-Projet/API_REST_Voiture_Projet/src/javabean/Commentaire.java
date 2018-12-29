@@ -9,11 +9,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Commentaire {
 
 	//Variable
+	private int id;
 	private String texte;
 	private Date dateCrea;
 	private Voiture voiture;
 	
 	//Getter et Setteur
+	@XmlElement(name="id_commentaire")
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	@XmlElement(name="text_commentaire")
 	public String getTexte() {
 		return texte;
@@ -42,6 +52,8 @@ public class Commentaire {
 	}
 	
 	//Constructeur
+	public Commentaire() {}
+	
 	public Commentaire(String texte, Date dateCrea, Voiture voiture) 
 	{
 		this.texte = texte;
