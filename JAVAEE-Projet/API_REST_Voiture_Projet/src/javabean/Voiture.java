@@ -7,13 +7,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Voiture {
 
 	//Variable
+	private int id;
 	private String couleur;
 	private String carburant;
 	private String boiteVitesse;
 	private int nbkm;
 	private int age;
 	private boolean dispo;
-	private Marque marque;
+	private Modele modele;
+		
+	//Getter et Setteur
+	@XmlElement(name="id_voiture")
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
 		
 	//Getter et Setteur
 	@XmlElement(name="couleur_voiture")
@@ -70,28 +81,28 @@ public class Voiture {
 		this.dispo = dispo;
 	}
 	
-	@XmlElement(name="marque_voiture")
-	public Marque getMarque() {
-		return marque;
+	@XmlElement(name="modele_voiture")
+	public Modele getModele() {
+		return modele;
 	}
 
-	public void setMarque(Marque marque) {
-		this.marque = marque;
+	public void setModele(Modele modele) {
+		this.modele = modele;
 	}
 	
 	//Constructeur
 	public Voiture() {}
 	
-	public Voiture(String couleur, String carburant, String boiteVitesse, int nbkm, int age, boolean dispo, Marque marque) 
+	public Voiture(int id, String couleur, String carburant, String boiteVitesse, int nbkm, int age, boolean dispo, Modele modele) 
 	{
-		super();
+		this.id =id;
 		this.couleur = couleur;
 		this.carburant = carburant;
 		this.boiteVitesse = boiteVitesse;
 		this.nbkm = nbkm;
 		this.age = age;
 		this.dispo = dispo;
-		this.marque = marque;
+		this.modele = modele;
 	}
 
 }
