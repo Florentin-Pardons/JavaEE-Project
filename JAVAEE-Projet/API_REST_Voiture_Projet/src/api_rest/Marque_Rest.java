@@ -114,7 +114,7 @@ public class Marque_Rest {
     
 	//Get
 	@GET
-    @Produces(MediaType.APPLICATION_XML)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getMarque(@QueryParam("id") int id)
 	{
 		
