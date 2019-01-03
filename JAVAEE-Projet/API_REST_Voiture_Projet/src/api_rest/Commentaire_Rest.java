@@ -1,5 +1,6 @@
 package api_rest;
 
+/*
 import java.sql.*;
 
 import javax.ws.rs.DELETE;
@@ -20,8 +21,8 @@ import oracle.jdbc.internal.OracleTypes;
 
 import java.util.ArrayList;
 import java.util.List;
-
-@Path("commentaire")
+*/
+//@Path("commentaire")
 public class Commentaire_Rest {	
 	/*
 	//Creer
