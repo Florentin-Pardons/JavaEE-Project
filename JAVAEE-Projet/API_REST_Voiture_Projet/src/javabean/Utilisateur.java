@@ -2,10 +2,6 @@ package javabean;
 
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name="utilisateur")
 public class Utilisateur {
 
 	//Variable
@@ -19,7 +15,6 @@ public class Utilisateur {
 	private boolean role;
 
 	//Getter et Setteur
-	@XmlElement(name="id_utilisateur")
 	public int getId() {
 		return id;
 	}
@@ -28,7 +23,6 @@ public class Utilisateur {
 		this.id = id;
 	}
 	
-	@XmlElement(name="mail_utilisateur")
 	public String getMail() {
 		return mail;
 	}
@@ -37,7 +31,6 @@ public class Utilisateur {
 		this.mail = mail;
 	}
 
-	@XmlElement(name="mp_utilisateur")
 	public String getMp() {
 		return mp;
 	}
@@ -46,7 +39,6 @@ public class Utilisateur {
 		this.mp = mp;
 	}
 
-	@XmlElement(name="nom_utilisateur")
 	public String getNom() {
 		return nom;
 	}
@@ -55,7 +47,6 @@ public class Utilisateur {
 		this.nom = nom;
 	}
 
-	@XmlElement(name="prenom_utilisateur")
 	public String getPrenom() {
 		return prenom;
 	}
@@ -64,7 +55,6 @@ public class Utilisateur {
 		this.prenom = prenom;
 	}
 
-	@XmlElement(name="datenaiss_utilisateur")
 	public Date getDateNaissance() {
 		return dateNaissance;
 	}
@@ -73,7 +63,6 @@ public class Utilisateur {
 		this.dateNaissance = dateNaissance;
 	}
 
-	@XmlElement(name="adresse_utilisateur")
 	public String getAdresse() {
 		return adresse;
 	}
@@ -82,7 +71,6 @@ public class Utilisateur {
 		this.adresse = adresse;
 	}
 
-	@XmlElement(name="role_utilisateur")
 	public boolean getRole() {
 		return role;
 	}
@@ -90,31 +78,6 @@ public class Utilisateur {
 	public void setRole(boolean role) {
 		this.role = role;
 	}
-
-	/*
-	public List<Voiture> getListVoiture() {
-		return listVoiture;
-	}
-
-	public void setListVoiture(List<Voiture> listVoiture) {
-		this.listVoiture = listVoiture;
-	}
-
-	public List<Commentaire> getListVommentaire() {
-		return listVommentaire;
-	}
-
-	public void setListVommentaire(List<Commentaire> listVommentaire) {
-		this.listVommentaire = listVommentaire;
-	}
-
-	public List<Reservation> getListReservation() {
-		return listReservation;
-	}
-
-	public void setListReservation(List<Reservation> listReservation) {
-		this.listReservation = listReservation;
-	}*/
 	
 	//Constructeur
 	public Utilisateur(String mail, String mp)
@@ -131,9 +94,6 @@ public class Utilisateur {
 		this.dateNaissance = dateNaissance;
 		this.adresse = adresse;
 		this.role = role;
-		/*this.listVoiture = new ArrayList<Voiture>();
-		this.listVommentaire = new ArrayList<Commentaire>();
-		this.listReservation = new ArrayList<Reservation>();*/
 	}
 	
 	public Utilisateur(String mail, String mp, String nom, String prenom, String adresse) 
@@ -142,11 +102,6 @@ public class Utilisateur {
 		this.mp = mp;
 		this.nom = nom;
 		this.prenom = prenom;
-		//this.dateNaissance = dateNaissance;
 		this.adresse = adresse;
-		//this.role = role;
-		/*this.listVoiture = new ArrayList<Voiture>();
-		this.listVommentaire = new ArrayList<Commentaire>();
-		this.listReservation = new ArrayList<Reservation>();*/
 	}
 }
