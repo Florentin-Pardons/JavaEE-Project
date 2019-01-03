@@ -1,9 +1,5 @@
 package javabean;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name="voiture")
 public class Voiture {
 
 	//Variable
@@ -17,7 +13,6 @@ public class Voiture {
 	private Modele modele;
 		
 	//Getter et Setteur
-	@XmlElement(name="id_voiture")
 	public int getId() {
 		return id;
 	}
@@ -27,7 +22,6 @@ public class Voiture {
 	}
 		
 	//Getter et Setteur
-	@XmlElement(name="couleur_voiture")
 	public String getCouleur() {
 		return couleur;
 	}
@@ -36,7 +30,6 @@ public class Voiture {
 		this.couleur = couleur;
 	}
 	
-	@XmlElement(name="carburant_voiture")
 	public String getCarburant() {
 		return carburant;
 	}
@@ -45,7 +38,6 @@ public class Voiture {
 		this.carburant = carburant;
 	}
 	
-	@XmlElement(name="boitevitesse_voiture")
 	public String getBoiteVitesse() {
 		return boiteVitesse;
 	}
@@ -54,7 +46,6 @@ public class Voiture {
 		this.boiteVitesse = boiteVitesse;
 	}
 	
-	@XmlElement(name="nbkm_voiture")
 	public int getNbkm() {
 		return nbkm;
 	}
@@ -63,7 +54,6 @@ public class Voiture {
 		this.nbkm = nbkm;
 	}
 	
-	@XmlElement(name="age_voiture")
 	public int getAge() {
 		return age;
 	}
@@ -72,7 +62,6 @@ public class Voiture {
 		this.age = age;
 	}
 	
-	@XmlElement(name="dispo_voiture")
 	public boolean getDispo() {
 		return dispo;
 	}
@@ -81,7 +70,6 @@ public class Voiture {
 		this.dispo = dispo;
 	}
 	
-	@XmlElement(name="modele_voiture")
 	public Modele getModele() {
 		return modele;
 	}
