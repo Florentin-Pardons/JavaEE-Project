@@ -2,10 +2,6 @@ package javabean;
 
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name="commentaire")
 public class Commentaire {
 
 	//Variable
@@ -15,7 +11,6 @@ public class Commentaire {
 	private Voiture voiture;
 	
 	//Getter et Setteur
-	@XmlElement(name="id_commentaire")
 	public int getId() {
 		return id;
 	}
@@ -24,7 +19,6 @@ public class Commentaire {
 		this.id = id;
 	}
 	
-	@XmlElement(name="text_commentaire")
 	public String getTexte() {
 		return texte;
 	}
@@ -33,7 +27,6 @@ public class Commentaire {
 		this.texte = texte;
 	}
 	
-	@XmlElement(name="datecrea_commentaire")
 	public Date getDateCrea() {
 		return dateCrea;
 	}
@@ -42,7 +35,6 @@ public class Commentaire {
 		this.dateCrea = dateCrea;
 	}
 	
-	@XmlElement(name="voiture_commentaire")
 	public Voiture getVoiture() {
 		return voiture;
 	}
