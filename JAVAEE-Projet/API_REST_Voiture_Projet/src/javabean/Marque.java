@@ -2,10 +2,6 @@ package javabean;
 
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name="marque")
 public class Marque {
 
 	//Variable
@@ -15,7 +11,6 @@ public class Marque {
 	private String paysOrigine;
 	
 	//Getter et Setteur
-	@XmlElement(name="id_marque")
 	public int getId() {
 		return id;
 	}
@@ -24,7 +19,6 @@ public class Marque {
 		this.id = id;
 	}
 	
-	@XmlElement(name="nom_marque")
 	public String getNom() {
 		return nom;
 	}
@@ -33,7 +27,6 @@ public class Marque {
 		this.nom = nom;
 	}
 	
-	@XmlElement(name="datecrea_marque")
 	public Date getDateCrea() {
 		return dateCrea;
 	}
@@ -42,7 +35,6 @@ public class Marque {
 		this.dateCrea = dateCrea;
 	}
 	
-	@XmlElement(name="paysorigine_marque")
 	public String getPaysOrigine() {
 		return paysOrigine;
 	}
