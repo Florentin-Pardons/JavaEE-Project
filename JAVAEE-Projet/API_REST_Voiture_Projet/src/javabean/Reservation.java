@@ -2,10 +2,6 @@ package javabean;
 
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name="reservation")
 public class Reservation {
 
 	//Variable
@@ -14,7 +10,6 @@ public class Reservation {
 	private Voiture voiture;
 	
 	//Getter et Setteur
-	@XmlElement(name="id_reservation")
 	public int getId() {
 		return id;
 	}
@@ -23,7 +18,6 @@ public class Reservation {
 		this.id = id;
 	}
 	
-	@XmlElement(name="dateres_reservation")
 	public Date getDateRes() {
 		return dateRes;
 	}
@@ -32,7 +26,6 @@ public class Reservation {
 		this.dateRes = dateRes;
 	}
 	
-	@XmlElement(name="voiture_reservation")
 	public Voiture getVoiture() {
 		return voiture;
 	}
