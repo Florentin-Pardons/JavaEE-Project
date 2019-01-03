@@ -1,9 +1,5 @@
 package javabean;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name="modele")
 public class Modele {
 
 	//Variable
@@ -15,7 +11,6 @@ public class Modele {
 	private Categorie categorie;
 	
 	//Getter et Setteur
-	@XmlElement(name="id_modele")
 	public int getId() {
 		return id;
 	}
@@ -24,7 +19,6 @@ public class Modele {
 		this.id = id;
 	}
 		
-	@XmlElement(name="nom_modele")
 	public String getNom() {
 		return nom;
 	}
@@ -33,7 +27,6 @@ public class Modele {
 		this.nom = nom;
 	}
 	
-	@XmlElement(name="nbporte_modele")
 	public int getNbPorte() {
 		return nbPorte;
 	}
@@ -42,7 +35,6 @@ public class Modele {
 		this.nbPorte = nbPorte;
 	}
 	
-	@XmlElement(name="volume_modele")
 	public int getVolumeCoffre() {
 		return volumeCoffre;
 	}
@@ -51,7 +43,6 @@ public class Modele {
 		this.volumeCoffre = volumeCoffre;
 	}
 	
-	@XmlElement(name="marque_modele")
 	public Marque getMarque() {
 		return marque;
 	}
@@ -60,7 +51,6 @@ public class Modele {
 		this.marque = marque;
 	}
 
-	@XmlElement(name="categorie_modele")
 	public Categorie getCategorie() {
 		return categorie;
 	}
