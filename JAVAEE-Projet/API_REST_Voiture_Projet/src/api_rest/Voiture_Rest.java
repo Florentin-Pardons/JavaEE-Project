@@ -134,7 +134,7 @@ public class Voiture_Rest {
 	
 	//Get
 	@GET
-    @Produces(MediaType.APPLICATION_XML)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getVoiture(@QueryParam("id") int id)
 	{
 		Connection connec = OracleConnexion.getInstance();
