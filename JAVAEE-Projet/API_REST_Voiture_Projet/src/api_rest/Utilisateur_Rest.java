@@ -130,7 +130,7 @@ public class Utilisateur_Rest {
     
 	//Get
 	@GET
-    @Produces(MediaType.APPLICATION_XML)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getUtilisateur(@QueryParam("id") int id)
 	{
 		Connection connec = OracleConnexion.getInstance();
