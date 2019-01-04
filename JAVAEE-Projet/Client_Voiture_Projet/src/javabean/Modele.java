@@ -1,6 +1,8 @@
 package javabean;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -79,29 +81,55 @@ public class Modele {
 		this.categorie = categorie;
 	}
 	
+	public Modele(int id, String nom, int nbPorte, int volumeCoffre, Marque marque, Categorie categorie)
+	{
+		this.id = id;
+		this.nom = nom;
+		this.nbPorte = nbPorte;
+		this.volumeCoffre = volumeCoffre;
+		this.marque = marque;
+		this.categorie = categorie;
+	}
+	
 	//Methode
 	//Creer
 	public boolean Creer() throws JsonParseException, JsonMappingException, IOException {
-		Modele_DAO mod = new Modele_DAO();
-		return mod.create(this);
+		Modele_DAO modDao = new Modele_DAO();
+		return modDao.create(this);
 	}
 	
 	//Delete
 	public boolean Delete() throws JsonParseException, JsonMappingException, IOException {
-		Modele_DAO mod = new Modele_DAO();
-		return mod.delete(this);
+		Modele_DAO modDao = new Modele_DAO();
+		return modDao.delete(this);
 	}
 	
 	//Update
 	public boolean Update() throws JsonParseException, JsonMappingException, IOException {
-		Modele_DAO mod = new Modele_DAO();
-		return mod.update(this);
+		Modele_DAO modDao = new Modele_DAO();
+		return modDao.update(this);
+	}
+	
+	//Trouver
+	public Modele Trouver(int id) throws JsonParseException, JsonMappingException, IOException
+	{
+		Modele_DAO marDao = new Modele_DAO();
+		return marDao.getModele(id);
 	}
 		
 	//Creation de la liste
 	public static List<Modele> List() throws JsonParseException, JsonMappingException, IOException
 	{
-		Modele_DAO mod = new Modele_DAO();
-		return mod.list();
+		/*Modele_DAO modDao = new Modele_DAO();
+		return modDao.list();*/
+		
+		List<Modele> mod = new ArrayList<Modele>();
+		Modele cc = new Modele(1, "c4", 55, 13, new Marque(1,"test", new Date(01/01/1990),"sdsf"), new Categorie(1, "4x4", "blabla"));
+		Modele ccc = new  Modele(2, "c5", 55, 13, new Marque(2,"hhhh", new Date(01/01/1990),"sdsf"), new Categorie(2, "suv", "yop"));
+		
+		mod.add(cc);
+		mod.add(ccc);
+		
+		return mod;
 	}
 }
