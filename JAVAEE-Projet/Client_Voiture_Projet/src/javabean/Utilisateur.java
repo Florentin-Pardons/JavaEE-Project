@@ -134,30 +134,58 @@ public class Utilisateur {
 		this.listReservation = new ArrayList<Reservation>();
 	}
 	
+	public Utilisateur(int id, String mail, String mp, String nom, String prenom, Date dateNaissance, String adresse, boolean role) 
+	{
+		this.id = id;
+		this.mail = mail;
+		this.mp = mp;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.dateNaissance = dateNaissance;
+		this.adresse = adresse;
+		this.role = role;
+		this.listVoiture = new ArrayList<Voiture>();
+		this.listVommentaire = new ArrayList<Commentaire>();
+		this.listReservation = new ArrayList<Reservation>();
+	}
+	
 	//Methode
 	//Creer
 	public boolean Creer() throws JsonParseException, JsonMappingException, IOException {
-		Utilisateur_DAO user = new Utilisateur_DAO();
-		return user.create(this);
+		Utilisateur_DAO userDao = new Utilisateur_DAO();
+		return userDao.create(this);
 	}
 	
 	//Delete
 	public boolean Delete() throws JsonParseException, JsonMappingException, IOException {
-		Utilisateur_DAO user = new Utilisateur_DAO();
-		return user.delete(this);
+		Utilisateur_DAO userDao = new Utilisateur_DAO();
+		return userDao.delete(this);
 	}
 	
 	//Update
 	public boolean Update() throws JsonParseException, JsonMappingException, IOException {
-		Utilisateur_DAO user = new Utilisateur_DAO();
-		return user.update(this);
+		Utilisateur_DAO userDao = new Utilisateur_DAO();
+		return userDao.update(this);
+	}
+		
+	//Trouver
+	public Utilisateur Trouver(int id) throws JsonParseException, JsonMappingException, IOException
+	{
+		Utilisateur_DAO userDao = new Utilisateur_DAO();
+		return userDao.getUtilisateur(id);
 	}
 		
 	//Creation de la liste
 	public static List<Utilisateur> List() throws JsonParseException, JsonMappingException, IOException
 	{
-		Utilisateur_DAO userDao = new Utilisateur_DAO();
-		return userDao.list();
+		/*Utilisateur_DAO userDao = new Utilisateur_DAO();
+		return userDao.list();*/
+		List<Utilisateur> list = new ArrayList<Utilisateur>();
+		Utilisateur user1 = new Utilisateur(1, "admin","sss", "tsssss", "sedfsfd", new Date(01/01/1990), "sfhjkdnf", true);
+		Utilisateur user2 = new Utilisateur(2, "user","sss", "tsssss", "sedfsfd", new Date(01/01/1990), "sfhjkdnf", false);
+		list.add(user1);
+		list.add(user2);
+		return list;
 	}
 	
 	//Verifie le login
@@ -174,7 +202,12 @@ public class Utilisateur {
 		
 		if(mail.equals("test") && mp.equals("test"))
 		{
-			Utilisateur user = new Utilisateur("test","sss", "tsssss", "sedfsfd", new Date(01/01/1990), "sfhjkdnf", true);
+			Utilisateur user = new Utilisateur(1,"admin","sss", "tsssss", "sedfsfd", new Date(01/01/1990), "sfhjkdnf", true);
+			return user;
+		}
+		else if(mail.equals("testeur") && mp.equals("testeur"))
+		{
+			Utilisateur user = new Utilisateur(2, "user","sss", "tsssss", "sedfsfd", new Date(01/01/1990), "sfhjkdnf", false);
 			return user;
 		}
 		else
