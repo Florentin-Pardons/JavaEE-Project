@@ -81,6 +81,13 @@ public class Marque {
 		return mar.update(this);
 	}
 		
+	//Trouver
+	public Marque Trouver(int id) throws JsonParseException, JsonMappingException, IOException
+	{
+		Marque_DAO marDao = new Marque_DAO();
+		return marDao.getMarque(id);
+	}
+	
 	//Creation de la liste
 	public static List<Marque> List() throws JsonParseException, JsonMappingException, IOException
 	{
