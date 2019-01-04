@@ -2,6 +2,7 @@ package javabean;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -98,9 +99,8 @@ public class Voiture {
 	//Constructeur
 	public Voiture() {}
 	
-	public Voiture(String couleur, String carburant, String boiteVitesse, int nbkm, int age, boolean dispo, Modele modele, Utilisateur user) 
+	public Voiture(String couleur, String carburant, String boiteVitesse, int nbkm, int age, boolean dispo, Modele modele) 
 	{
-		super();
 		this.couleur = couleur;
 		this.carburant = carburant;
 		this.boiteVitesse = boiteVitesse;
@@ -108,7 +108,20 @@ public class Voiture {
 		this.age = age;
 		this.dispo = dispo;
 		this.modele = modele;
-		this.user = user;
+		//this.user = user;
+	}
+	
+	public Voiture(int id, String couleur, String carburant, String boiteVitesse, int nbkm, int age, boolean dispo, Modele modele) 
+	{
+		this.id = id;
+		this.couleur = couleur;
+		this.carburant = carburant;
+		this.boiteVitesse = boiteVitesse;
+		this.nbkm = nbkm;
+		this.age = age;
+		this.dispo = dispo;
+		this.modele = modele;
+		//this.user = user;
 	}
 	
 	//Methode
@@ -130,6 +143,13 @@ public class Voiture {
 		return voi.update(this);
 	}
 		
+	//Trouver
+	public Voiture Trouver(int id) throws JsonParseException, JsonMappingException, IOException
+	{
+		Voiture_DAO voiDao = new Voiture_DAO();
+		return voiDao.getVoiture(id);
+	}
+		
 	//Creation de la liste
 	public static List<Voiture> List() throws JsonParseException, JsonMappingException, IOException
 	{
@@ -137,17 +157,8 @@ public class Voiture {
 		//return voiDao.list();
 		
 		List<Voiture> listvoiture = new ArrayList<Voiture>();
-		Voiture v1 = new Voiture();
-		v1.setId(1);
-		v1.setAge(11);
-		v1.setBoiteVitesse("auto");
-		v1.setCarburant("essence");
-		
-		Voiture v2 = new Voiture();
-		v2.setId(2);
-		v2.setAge(22);
-		v2.setBoiteVitesse("manuel");
-		v2.setCarburant("diessel");
+		Voiture v1 = new Voiture(1, "vert", "essence", "auto", 1500, 15, true, new Modele(1, "c4", 55, 13, new Marque(1,"test", new Date(01/01/1990),"sdsf"), new Categorie(1, "4x4", "blabla")));
+		Voiture v2 = new Voiture(2, "jaune", "diessel", "auto", 2000, 20, true, new  Modele(2, "c5", 55, 13, new Marque(2,"hhhh", new Date(01/01/1990),"sdsf"), new Categorie(2, "suv", "yop")));
 		
 		listvoiture.add(v1);
 		listvoiture.add(v2);
