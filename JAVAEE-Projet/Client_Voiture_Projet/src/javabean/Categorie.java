@@ -1,6 +1,7 @@
 package javabean;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -42,8 +43,9 @@ public class Categorie {
 	//Constructeur
 	public Categorie() {}
 	
-	public Categorie(String nom, String description)
+	public Categorie(int id, String nom, String description)
 	{
+		this.id = id;
 		this.nom = nom;
 		this.description = description;
 	}
@@ -67,10 +69,25 @@ public class Categorie {
 		return cat.update(this);
 	}
 		
+	//Trouver
+	public Categorie Trouver(int id) throws JsonParseException, JsonMappingException, IOException
+	{
+		Categorie_DAO catDao = new Categorie_DAO();
+		return catDao.getCategorie(id);
+	}
+		
 	//Creation de la liste
 	public static List<Categorie> List() throws JsonParseException, JsonMappingException, IOException
 	{
-		Categorie_DAO catDao = new Categorie_DAO();
-		return catDao.list();
+		/*Categorie_DAO catDao = new Categorie_DAO();
+		return catDao.list();*/
+		
+		List<Categorie> cat = new ArrayList<Categorie>();
+		Categorie s = new Categorie(1, "4x4", "blabla");
+		Categorie ss = new Categorie(2, "suv", "yop");
+		cat.add(s);
+		cat.add(ss);
+		
+		return cat;
 	}	
 }
