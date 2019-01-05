@@ -79,15 +79,15 @@ public class Categorie {
 	//Creation de la liste
 	public static List<Categorie> List() throws JsonParseException, JsonMappingException, IOException
 	{
-		/*Categorie_DAO catDao = new Categorie_DAO();
-		return catDao.list();*/
+		Categorie_DAO catDao = new Categorie_DAO();
+		return catDao.list();
 		
-		List<Categorie> cat = new ArrayList<Categorie>();
+		/*List<Categorie> cat = new ArrayList<Categorie>();
 		Categorie s = new Categorie(1, "4x4", "blabla");
 		Categorie ss = new Categorie(2, "suv", "yop");
 		cat.add(s);
-		cat.add(ss);
+		cat.add(ss);*/
 		
-		return cat;
+		//return cat;
 	}	
 }
