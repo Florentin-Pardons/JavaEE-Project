@@ -41,7 +41,8 @@ public class Categorie_DAO {
 	public boolean delete(Categorie cat) throws JsonParseException, JsonMappingException, IOException
 	{		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
-				.path("categorie/"+cat.getId())
+				.path("categorie")
+				.queryParam("Id", Integer.toString(cat.getId()))
 				.delete(ClientResponse .class);
 		System.out.println(jsonAnswer); //
 		
@@ -75,7 +76,8 @@ public class Categorie_DAO {
 	public Categorie getCategorie(int id) throws JsonParseException, JsonMappingException, IOException
 	{		
 		String jsonAnswer = VTConnection.accessToAPI()
-				.path("categorie/"+id)
+				.path("categorie")
+				.queryParam("id", Integer.toString(id))
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
 		System.out.println(jsonAnswer); //
