@@ -120,9 +120,10 @@ public class Modele {
 	//Creation de la liste
 	public static List<Modele> List() throws JsonParseException, JsonMappingException, IOException
 	{
-		/*Modele_DAO modDao = new Modele_DAO();
-		return modDao.list();*/
+		Modele_DAO modDao = new Modele_DAO();
+		return modDao.list();
 		
+		/*
 		List<Modele> mod = new ArrayList<Modele>();
 		Modele cc = new Modele(1, "c4", 55, 13, new Marque(1,"test", new Date(01/01/1990),"sdsf"), new Categorie(1, "4x4", "blabla"));
 		Modele ccc = new  Modele(2, "c5", 55, 13, new Marque(2,"hhhh", new Date(01/01/1990),"sdsf"), new Categorie(2, "suv", "yop"));
@@ -130,6 +131,6 @@ public class Modele {
 		mod.add(cc);
 		mod.add(ccc);
 		
-		return mod;
+		return mod;*/
 	}
 }
