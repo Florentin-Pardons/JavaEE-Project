@@ -31,10 +31,10 @@ public class Utilisateur_DAO {
 		params.add("prenom", user.getPrenom());
 		params.add("datenaissance", dateform.format(user.getDateNaissance()));
 		params.add("adresse", user.getAdresse());
-		params.add("statut", Boolean.toString(user.isRole()));
+		params.add("statut", user.isRole()!=false?"1":"0");
 		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
-				.path("userque")
+				.path("utilisateur")
 				.type("appliuserion/x-www-form-urlencoded")
 				.post(ClientResponse.class, params);
 		System.out.println(jsonAnswer); //
@@ -49,7 +49,8 @@ public class Utilisateur_DAO {
 	public boolean delete(Utilisateur user) throws JsonParseException, JsonMappingException, IOException
 	{		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
-				.path("userque/"+user.getId())
+				.path("utilisateur")
+				.queryParam("Id", Integer.toString(user.getId()))
 				.delete(ClientResponse .class);
 		System.out.println(jsonAnswer); //
 		
@@ -71,10 +72,10 @@ public class Utilisateur_DAO {
 		params.add("prenom", user.getPrenom());
 		params.add("datenaissance", dateform.format(user.getDateNaissance()));
 		params.add("adresse", user.getAdresse());
-		params.add("statut", Boolean.toString(user.isRole()));
+		params.add("statut", user.isRole()!=false?"1":"0");
 		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
-				.path("userque")
+				.path("utilisateur")
 				.type("appliuserion/x-www-form-urlencoded")
 				.put(ClientResponse.class, params);
 		System.out.println(jsonAnswer); //
@@ -89,7 +90,8 @@ public class Utilisateur_DAO {
 	public Utilisateur getUtilisateur(int id) throws JsonParseException, JsonMappingException, IOException
 	{		
 		String jsonAnswer = VTConnection.accessToAPI()
-				.path("userque/"+id)
+				.path("utilisateur")
+				.queryParam("id", Integer.toString(id))
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
 		System.out.println(jsonAnswer); //
@@ -106,7 +108,7 @@ public class Utilisateur_DAO {
 	public List<Utilisateur> list() throws JsonParseException, JsonMappingException, IOException
 	{		
 		String jsonAnswer = VTConnection.accessToAPI()
-				.path("userque/all")
+				.path("utilisateur/all")
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
 		System.out.println(jsonAnswer); //
