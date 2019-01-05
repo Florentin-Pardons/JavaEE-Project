@@ -15,19 +15,19 @@
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
 		    <td> Id : </td>
-		    <td><input type="text" name="id" id="id" value="<% mod.getId(); %>" size="20"/></td>
+		    <td><input type="text" name="id" id="id" value="<% out.println(mod.getId()); %>" size="20"/></td>
 		</tr>
 		<tr>
 		    <td> Nom : </td>
-		    <td><input type="text" name="nom" id="nom" value="<% mod.getNom(); %>" size="20"/></td>
+		    <td><input type="text" name="nom" id="nom" value="<% out.println(mod.getNom()); %>" size="20"/></td>
 		</tr>
 		<tr>
 		    <td> Nombre de porte : </td>
-		    <td><input type="text" name="nbporte" id="nbporte" value="<% mod.getNbPorte(); %>" size="20"/></td>
+		    <td><input type="text" name="nbporte" id="nbporte" value="<% out.println(mod.getNbPorte()); %>" size="20"/></td>
 		</tr>
 		<tr>
 		    <td> Volume du coffre : </td>
-		    <td><input type="text" name="volumecoffre" id="volumecoffre" value="<% mod.getVolumeCoffre(); %>" size="20"/></td>
+		    <td><input type="text" name="volumecoffre" id="volumecoffre" value="<% out.println(mod.getVolumeCoffre()); %>" size="20"/></td>
 		</tr>
 		<tr>
 			<td> Marque : </td>
