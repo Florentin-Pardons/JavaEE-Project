@@ -39,7 +39,7 @@ public class GestionUtilisateur extends HttpServlet {
 		{
 			int id = Integer.parseInt(request.getParameter("id"));
 			Utilisateur user = new Utilisateur();
-			user.Trouver(id);
+			user = user.Trouver(id);
 			
 			request.setAttribute("utilisateur", user);
 			
@@ -116,14 +116,18 @@ public class GestionUtilisateur extends HttpServlet {
 			Utilisateur utilisateur = new Utilisateur(mail, mp, nom, prenom, datenaissance, adresse, role);
 			utilisateur.Creer();
 			
+			//Update liste
+			List<Utilisateur> listuser = Utilisateur.List();
+			request.setAttribute("listutilisateur", listuser);
+			
 			request.setAttribute("titre", "Gestion des Utilisateurs");
 			getServletContext().getRequestDispatcher("/Vues/Utilisateur\\listutilisateur.jsp").forward(request, response);
 			//response.sendRedirect("/Client_Voiture_Projet/GestionUtilisateur");
 		}
 		else
 		{
-			List<Utilisateur> listmar = Utilisateur.List();
-			request.setAttribute("listutilisateur", listmar);
+			List<Utilisateur> listuser = Utilisateur.List();
+			request.setAttribute("listutilisateur", listuser);
 			
 			request.setAttribute("titre", "Gestion des Utilisateurs");
 			getServletContext().getRequestDispatcher("/Vues/Utilisateur\\listutilisateur.jsp").forward(request, response);
