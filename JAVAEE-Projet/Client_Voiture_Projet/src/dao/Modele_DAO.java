@@ -43,7 +43,8 @@ public class Modele_DAO {
 	public boolean delete(Modele mod) throws JsonParseException, JsonMappingException, IOException
 	{		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
-				.path("modele/"+mod.getId())
+				.path("modele")
+				.queryParam("Id", Integer.toString(mod.getId()))
 				.delete(ClientResponse .class);
 		System.out.println(jsonAnswer); //
 		
@@ -80,7 +81,8 @@ public class Modele_DAO {
 	public Modele getModele(int id) throws JsonParseException, JsonMappingException, IOException
 	{		
 		String jsonAnswer = VTConnection.accessToAPI()
-				.path("modele/"+id)
+				.path("modele")
+				.queryParam("id", Integer.toString(id))
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
 		System.out.println(jsonAnswer); //
