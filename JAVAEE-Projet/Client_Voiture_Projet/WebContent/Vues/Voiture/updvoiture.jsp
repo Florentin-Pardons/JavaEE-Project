@@ -13,27 +13,27 @@
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
 		    <td> Id : </td>
-		    <td><input type="text" name="id" id="id" value="<% voi.getId(); %>" size="20"/></td>
+		    <td><input type="text" name="id" id="id" value="<% out.println(voi.getId()); %>" size="20"/></td>
 		</tr>
 		<tr>
 		    <td> Couleur : </td>
-		    <td><input type="text" name="couleur" id="couleur" value="<% voi.getCouleur(); %>" size="20"/></td>
+		    <td><input type="text" name="couleur" id="couleur" value="<% out.println(voi.getCouleur()); %>" size="20"/></td>
 		</tr>
 		<tr>
 		    <td> Carburant : </td>
-		    <td><input type="text" name="carburant" id="carburant" value="<% voi.getCarburant(); %>" size="20"/></td>
+		    <td><input type="text" name="carburant" id="carburant" value="<% out.println(voi.getCarburant()); %>" size="20"/></td>
 		</tr>
 		<tr>
 		    <td> Boite de Vitesse : </td>
-		    <td><input type="text" name="boiteVitesse" id="boiteVitesse" value="<% voi.getBoiteVitesse(); %>" size="20"/></td>
+		    <td><input type="text" name="boiteVitesse" id="boiteVitesse" value="<% out.println(voi.getBoiteVitesse()); %>" size="20"/></td>
 		</tr>
 		<tr>
 		    <td> Nombre de Kilometre : </td>
-		    <td><input type="text" name="nbkm" id="nbkm" value="<% voi.getNbkm(); %>" size="20"/></td>
+		    <td><input type="text" name="nbkm" id="nbkm" value="<% out.println(voi.getNbkm()); %>" size="20"/></td>
 		</tr>
 		<tr>
 		    <td> Dispo : </td>
-		    <td><input type="text" name="age" id="age" value="<% voi.isDispo(); %>" size="20"/></td>
+		    <td><input type="text" name="age" id="age" value="<% out.println(voi.isDispo()); %>" size="20"/></td>
 		</tr>
        	<tr>
        		<td> Modele : </td>
