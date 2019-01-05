@@ -178,28 +178,41 @@ public class Utilisateur {
 	//Creation de la liste
 	public static List<Utilisateur> List() throws JsonParseException, JsonMappingException, IOException
 	{
-		/*Utilisateur_DAO userDao = new Utilisateur_DAO();
-		return userDao.list();*/
+		Utilisateur_DAO userDao = new Utilisateur_DAO();
+		return userDao.list();
+		
+		/*
 		List<Utilisateur> list = new ArrayList<Utilisateur>();
 		Utilisateur user1 = new Utilisateur(1, "admin","sss", "tsssss", "sedfsfd", new Date(01/01/1990), "sfhjkdnf", true);
 		Utilisateur user2 = new Utilisateur(2, "user","sss", "tsssss", "sedfsfd", new Date(01/01/1990), "sfhjkdnf", false);
 		list.add(user1);
 		list.add(user2);
-		return list;
+		return list;*/
 	}
 	
 	//Verifie le login
 	public Utilisateur verif(String mail, String mp) throws JsonParseException, JsonMappingException, IOException
 	{
-		/*
-		List<Utilisateur> listuser = Utilisateur.List();
 		
-		for(Utilisateur u : listuser)
+		if(mail.equals("test") && mp.equals("test"))
 		{
-			if(u.getMail() == mail && u.getMp() == mp)
-				return u;
-		}*/
+			Utilisateur user = new Utilisateur(1,"admin","sss", "tsssss", "sedfsfd", new Date(01/01/1990), "sfhjkdnf", true);
+			return user;
+		}
+		else
+		{
+			List<Utilisateur> listuser = Utilisateur.List();
+			
+			for(Utilisateur u : listuser)
+			{
+				if(u.getMail().equals(mail) && u.getMp().equals(mp))
+					return u;
+			}
+			
+			return null;
+		}
 		
+		/*
 		if(mail.equals("test") && mp.equals("test"))
 		{
 			Utilisateur user = new Utilisateur(1,"admin","sss", "tsssss", "sedfsfd", new Date(01/01/1990), "sfhjkdnf", true);
@@ -211,6 +224,6 @@ public class Utilisateur {
 			return user;
 		}
 		else
-			return null;
+			return null;*/
 	}
 }
