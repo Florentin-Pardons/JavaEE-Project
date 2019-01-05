@@ -153,9 +153,10 @@ public class Voiture {
 	//Creation de la liste
 	public static List<Voiture> List() throws JsonParseException, JsonMappingException, IOException
 	{
-		//Voiture_DAO voiDao = new Voiture_DAO();
-		//return voiDao.list();
+		Voiture_DAO voiDao = new Voiture_DAO();
+		return voiDao.list();
 		
+		/*
 		List<Voiture> listvoiture = new ArrayList<Voiture>();
 		Voiture v1 = new Voiture(1, "vert", "essence", "auto", 1500, 15, true, new Modele(1, "c4", 55, 13, new Marque(1,"test", new Date(01/01/1990),"sdsf"), new Categorie(1, "4x4", "blabla")));
 		Voiture v2 = new Voiture(2, "jaune", "diessel", "auto", 2000, 20, true, new  Modele(2, "c5", 55, 13, new Marque(2,"hhhh", new Date(01/01/1990),"sdsf"), new Categorie(2, "suv", "yop")));
@@ -163,6 +164,6 @@ public class Voiture {
 		listvoiture.add(v1);
 		listvoiture.add(v2);
 		
-		return listvoiture;
+		return listvoiture;*/
 	}
 }
