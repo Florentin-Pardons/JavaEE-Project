@@ -54,6 +54,10 @@ public class GestionCategorie extends HttpServlet {
 			Categorie categorie = new Categorie(id, nom, description);
 			categorie.Update();
 			
+			//Update la liste
+			List<Categorie> listmar = Categorie.List();
+			request.setAttribute("listcategorie", listmar);
+			
 			//Redirection
 			request.setAttribute("titre", "Gestion des Categories");
 			getServletContext().getRequestDispatcher("/Vues/Categorie\\listcategorie.jsp").forward(request, response);
