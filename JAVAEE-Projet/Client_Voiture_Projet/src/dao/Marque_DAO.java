@@ -45,7 +45,8 @@ public class Marque_DAO {
 	public boolean delete(Marque mar) throws JsonParseException, JsonMappingException, IOException
 	{		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
-				.path("marque/"+mar.getId())
+				.path("marque")
+				.queryParam("Id", Integer.toString(mar.getId()))
 				.delete(ClientResponse .class);
 		System.out.println(jsonAnswer); //
 		
@@ -81,7 +82,8 @@ public class Marque_DAO {
 	public Marque getMarque(int id) throws JsonParseException, JsonMappingException, IOException
 	{		
 		String jsonAnswer = VTConnection.accessToAPI()
-				.path("marque/"+id)
+				.path("marque")
+				.queryParam("Id", Integer.toString(id))
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
 		System.out.println(jsonAnswer); //
