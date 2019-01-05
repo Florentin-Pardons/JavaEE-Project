@@ -91,9 +91,10 @@ public class Marque {
 	//Creation de la liste
 	public static List<Marque> List() throws JsonParseException, JsonMappingException, IOException
 	{
-		//Marque_DAO marDao = new Marque_DAO();
-		//return marDao.list();
+		Marque_DAO marDao = new Marque_DAO();
+		return marDao.list();
 		
+		/*
 		List<Marque> listmarque = new ArrayList<Marque>();
 		Marque m1 = new Marque(1,"test", new Date(01/01/1990),"sdsf");
 		Marque m2 = new Marque(2,"hhhh", new Date(01/01/1990),"sdsf");
@@ -101,7 +102,7 @@ public class Marque {
 		listmarque.add(m1);
 		listmarque.add(m2);
 		
-		return listmarque;
+		return listmarque;*/
 		
 	}
 }
