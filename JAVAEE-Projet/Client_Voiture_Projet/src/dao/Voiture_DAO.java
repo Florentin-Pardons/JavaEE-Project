@@ -46,7 +46,8 @@ public class Voiture_DAO {
 	public boolean delete(Voiture voi) throws JsonParseException, JsonMappingException, IOException
 	{		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
-				.path("voiture/"+voi.getId())
+				.path("voiture")
+				.queryParam("Id", Integer.toString(voi.getId()))
 				.delete(ClientResponse .class);
 		System.out.println(jsonAnswer); //
 		
@@ -85,7 +86,8 @@ public class Voiture_DAO {
 	public Voiture getVoiture(int id) throws JsonParseException, JsonMappingException, IOException
 	{		
 		String jsonAnswer = VTConnection.accessToAPI()
-				.path("voiture/"+id)
+				.path("voiture")
+				.queryParam("Id", Integer.toString(id))
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
 		System.out.println(jsonAnswer); //
