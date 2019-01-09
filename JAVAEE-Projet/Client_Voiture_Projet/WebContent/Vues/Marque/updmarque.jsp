@@ -1,11 +1,13 @@
 <%@ page import="javabean.Marque" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 
 <% Marque marque = (Marque)request.getAttribute("marque"); %>
+<% SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); %>
 
 <!-- Header -->
 <%@ include file='/Vues/Canva\\header.jsp' %>
 
-<h1>Modifier Marque</h1>
+<h2>Modifier Marque</h2>
 <form action="/Client_Voiture_Projet/GestionMarque" method="GET">
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
@@ -18,7 +20,7 @@
 		</tr>
 		<tr>
 		    <td> Date Creation : </td>
-		    <td><input type="text" name="datecreation" id="datecreation" value="<% out.println(marque.getDateCrea()); %>" size="20"/></td>
+		    <td><input type="text" name="datecreation" id="datecreation" value="<% out.println(formatter.format(marque.getDateCrea())); %>" size="20"/></td>
 		</tr>
 		<tr>
 		    <td> Pays d' Origine : </td>
