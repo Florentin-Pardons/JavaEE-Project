@@ -37,13 +37,19 @@ public class GestionMarque extends HttpServlet {
 		//Redirection vers la page Modifier
 		if(request.getParameter("update") != null)
 		{
+			int id = Integer.parseInt(request.getParameter("id"));
+			Marque mar = new Marque();
+			mar = mar.Trouver(id);
+			
+			request.setAttribute("marque", mar);
+			
 			request.setAttribute("titre", "Modifier Marque");
 			getServletContext().getRequestDispatcher("/Vues/Marque\\updmarque.jsp").forward(request, response);
 		}
 		
 		if(request.getParameter("update2") != null)
 		{
-			SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			int id = Integer.parseInt(request.getParameter("id"));
 			String nom = request.getParameter("nom");
 			Date date = null;
@@ -58,10 +64,12 @@ public class GestionMarque extends HttpServlet {
 			Marque marque = new Marque(id, nom, date, paysorigine);
 			marque.Update();
 			
+			List<Marque> listmar = Marque.List();
+			request.setAttribute("listmarque", listmar);
+			
 			//Redirection
 			request.setAttribute("titre", "Gestion des Marques");
 			getServletContext().getRequestDispatcher("/Vues/Marque\\listmarque.jsp").forward(request, response);
-			//response.sendRedirect("/Client_Voiture_Projet/GestionMarque");
 		}
 		
 		if(request.getParameter("delete") != null)
@@ -69,10 +77,14 @@ public class GestionMarque extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("id"));
 			
 			Marque mar = new Marque();
-			mar.Trouver(id);
+			mar = mar.Trouver(id);
+			mar.Delete();
 			
-			request.setAttribute("titre", "Accueil");
-			getServletContext().getRequestDispatcher("/Vues/Accueil\\accueil.jsp").forward(request, response);
+			List<Marque> listmar = Marque.List();
+			request.setAttribute("listmarque", listmar);
+			
+			request.setAttribute("titre", "Gestion des Marques");
+			getServletContext().getRequestDispatcher("/Vues/Marque\\listmarque.jsp").forward(request, response);
 		}
 		
 		//Redirection vers la page Creer
@@ -84,7 +96,7 @@ public class GestionMarque extends HttpServlet {
 		
 		if(request.getParameter("insert2") != null)
 		{
-			SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			
 			String nom = request.getParameter("nom");
 			Date date = null;
@@ -100,6 +112,9 @@ public class GestionMarque extends HttpServlet {
 			marque.setDateCrea(date);
 			marque.setPaysOrigine(paysorigine);
 			marque.Creer();
+			
+			List<Marque> listmar = Marque.List();
+			request.setAttribute("listmarque", listmar);
 			
 			request.setAttribute("titre", "Gestion des Marques");
 			getServletContext().getRequestDispatcher("/Vues/Marque\\listmarque.jsp").forward(request, response);
