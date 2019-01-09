@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -153,17 +154,300 @@ public class Voiture {
 	//Creation de la liste
 	public static List<Voiture> List() throws JsonParseException, JsonMappingException, IOException
 	{
-		Voiture_DAO voiDao = new Voiture_DAO();
-		return voiDao.list();
-		
 		/*
+		Voiture_DAO voiDao = new Voiture_DAO();
+		return voiDao.list();*/
+		
+		
 		List<Voiture> listvoiture = new ArrayList<Voiture>();
-		Voiture v1 = new Voiture(1, "vert", "essence", "auto", 1500, 15, true, new Modele(1, "c4", 55, 13, new Marque(1,"test", new Date(01/01/1990),"sdsf"), new Categorie(1, "4x4", "blabla")));
-		Voiture v2 = new Voiture(2, "jaune", "diessel", "auto", 2000, 20, true, new  Modele(2, "c5", 55, 13, new Marque(2,"hhhh", new Date(01/01/1990),"sdsf"), new Categorie(2, "suv", "yop")));
+		Voiture v1 = new Voiture(1, "jaune", "essence", "auto", 1500, 15, true, new Modele(1, "c4", 55, 13, new Marque(1,"test", new Date(01/01/1990),"sdsf"), new Categorie(1, "4x4", "blabla")));
+		Voiture v2 = new Voiture(2, "vert", "diessel", "auto", 2000, 20, true, new  Modele(2, "c5", 55, 13, new Marque(1,"hhhh", new Date(01/01/1990),"sdsf"), new Categorie(1, "suv", "yop")));
 		
 		listvoiture.add(v1);
 		listvoiture.add(v2);
 		
-		return listvoiture;*/
+		return listvoiture;
+	}
+	
+	//Recherche de voiture
+	public static List<Voiture> Chercher(String couleur, String carburant, String boiteVitesse, int marque, int categorie) throws JsonParseException, JsonMappingException, IOException
+	{
+		List<Voiture> list = Voiture.List();
+		List<Voiture> listreturn = new ArrayList<Voiture>();
+		
+		
+		if(couleur != null && carburant != null && boiteVitesse != null && marque != 0 && categorie != 0)
+		{
+			listreturn = list.stream()
+					.filter(v -> v.getCouleur().equals(couleur))
+					.filter(v -> v.getCarburant().equals(carburant))
+					.filter(v -> v.getBoiteVitesse().equals(boiteVitesse))
+					.filter(v -> v.getModele().getMarque().getId() == marque)
+					.filter(v -> v.getModele().getCategorie().getId() == categorie)
+	                .collect(Collectors.toList());
+		}
+		else
+		{
+			if(couleur == null && carburant != null && boiteVitesse != null && marque != 0 && categorie != 0)
+			{
+				listreturn = list.stream()
+						.filter(v -> v.getCarburant().equals(carburant))
+						.filter(v -> v.getBoiteVitesse().equals(boiteVitesse))
+						.filter(v -> v.getModele().getMarque().getId() == marque)
+						.filter(v -> v.getModele().getCategorie().getId() == categorie)
+		                .collect(Collectors.toList());
+			}
+			else
+			{
+				if(couleur != null && carburant == null && boiteVitesse != null && marque != 0 && categorie != 0)
+				{
+					listreturn = list.stream()
+							.filter(v -> v.getCouleur().equals(couleur))
+							.filter(v -> v.getBoiteVitesse().equals(boiteVitesse))
+							.filter(v -> v.getModele().getMarque().getId() == marque)
+							.filter(v -> v.getModele().getCategorie().getId() == categorie)
+			                .collect(Collectors.toList());
+				}
+				else
+				{
+					if(couleur != null && carburant != null && boiteVitesse == null && marque != 0 && categorie != 0)
+					{
+						listreturn = list.stream()
+								.filter(v -> v.getCouleur().equals(couleur))
+								.filter(v -> v.getCarburant().equals(carburant))
+								.filter(v -> v.getModele().getMarque().getId() == marque)
+								.filter(v -> v.getModele().getCategorie().getId() == categorie)
+				                .collect(Collectors.toList());
+					}
+					else
+					{
+						if(couleur != null && carburant != null && boiteVitesse != null && marque == 0 && categorie != 0)
+						{
+							listreturn = list.stream()
+									.filter(v -> v.getCouleur().equals(couleur))
+									.filter(v -> v.getCarburant().equals(carburant))
+									.filter(v -> v.getBoiteVitesse().equals(boiteVitesse))
+									.filter(v -> v.getModele().getCategorie().getId() == categorie)
+					                .collect(Collectors.toList());
+						}
+						else
+						{
+							if(couleur != null && carburant != null && boiteVitesse != null && marque != 0 && categorie == 0)
+							{
+								listreturn = list.stream()
+										.filter(v -> v.getCouleur().equals(couleur))
+										.filter(v -> v.getCarburant().equals(carburant))
+										.filter(v -> v.getBoiteVitesse().equals(boiteVitesse))
+										.filter(v -> v.getModele().getMarque().getId() == marque)
+						                .collect(Collectors.toList());
+							}
+							else
+							{
+								if(couleur == null && carburant == null && boiteVitesse != null && marque != 0 && categorie != 0)
+								{
+									listreturn = list.stream()
+											.filter(v -> v.getBoiteVitesse().equals(boiteVitesse))
+											.filter(v -> v.getModele().getMarque().getId() == marque)
+											.filter(v -> v.getModele().getCategorie().getId() == categorie)
+							                .collect(Collectors.toList());
+								}
+								else
+								{
+									if(couleur == null && carburant != null && boiteVitesse == null && marque != 0 && categorie != 0)
+									{
+										listreturn = list.stream()
+												.filter(v -> v.getCarburant().equals(carburant))
+												.filter(v -> v.getModele().getMarque().getId() == marque)
+												.filter(v -> v.getModele().getCategorie().getId() == categorie)
+								                .collect(Collectors.toList());
+									}
+									else
+									{
+										if(couleur == null && carburant != null && boiteVitesse != null && marque == 0 && categorie != 0)
+										{
+											listreturn = list.stream()
+													.filter(v -> v.getCarburant().equals(carburant))
+													.filter(v -> v.getBoiteVitesse().equals(boiteVitesse))
+													.filter(v -> v.getModele().getCategorie().getId() == categorie)
+									                .collect(Collectors.toList());
+										}
+										else
+										{
+											if(couleur == null && carburant != null && boiteVitesse != null && marque != 0 && categorie == 0)
+											{
+												listreturn = list.stream()
+														.filter(v -> v.getCarburant().equals(carburant))
+														.filter(v -> v.getBoiteVitesse().equals(boiteVitesse))
+														.filter(v -> v.getModele().getMarque().getId() == marque)
+										                .collect(Collectors.toList());
+											}
+											else
+											{
+												if(couleur != null && carburant == null && boiteVitesse == null && marque != 0 && categorie != 0)
+												{
+													listreturn = list.stream()
+															.filter(v -> v.getCouleur().equals(couleur))
+															.filter(v -> v.getModele().getMarque().getId() == marque)
+															.filter(v -> v.getModele().getCategorie().getId() == categorie)
+											                .collect(Collectors.toList());
+												}
+												else
+												{
+													if(couleur != null && carburant == null && boiteVitesse != null && marque == 0 && categorie != 0)
+													{
+														listreturn = list.stream()
+																.filter(v -> v.getCouleur().equals(couleur))
+																.filter(v -> v.getBoiteVitesse().equals(boiteVitesse))
+																.filter(v -> v.getModele().getCategorie().getId() == categorie)
+												                .collect(Collectors.toList());
+													}
+													else
+													{
+														if(couleur != null && carburant == null && boiteVitesse != null && marque != 0 && categorie == 0)
+														{
+															listreturn = list.stream()
+																	.filter(v -> v.getCouleur().equals(couleur))
+																	.filter(v -> v.getBoiteVitesse().equals(boiteVitesse))
+																	.filter(v -> v.getModele().getMarque().getId() == marque)
+													                .collect(Collectors.toList());
+														}
+														else
+														{
+															if(couleur != null && carburant != null && boiteVitesse == null && marque == 0 && categorie != 0)
+															{
+																listreturn = list.stream()
+																		.filter(v -> v.getCouleur().equals(couleur))
+																		.filter(v -> v.getCarburant().equals(carburant))
+																		.filter(v -> v.getModele().getCategorie().getId() == categorie)
+														                .collect(Collectors.toList());
+															}
+															else
+															{
+																if(couleur != null && carburant != null && boiteVitesse == null && marque != 0 && categorie == 0)
+																{
+																	listreturn = list.stream()
+																			.filter(v -> v.getCouleur().equals(couleur))
+																			.filter(v -> v.getCarburant().equals(carburant))
+																			.filter(v -> v.getModele().getMarque().getId() == marque)
+															                .collect(Collectors.toList());
+																}
+																else
+																{
+																	if(couleur != null && carburant != null && boiteVitesse != null && marque == 0 && categorie == 0)
+																	{
+																		listreturn = list.stream()
+																				.filter(v -> v.getCouleur().equals(couleur))
+																				.filter(v -> v.getCarburant().equals(carburant))
+																				.filter(v -> v.getBoiteVitesse().equals(boiteVitesse))
+																                .collect(Collectors.toList());
+																	}
+																	else
+																	{
+
+																		if(couleur == null && carburant == null && boiteVitesse == null && marque != 0 && categorie != 0)
+																		{
+																			listreturn = list.stream()
+																					.filter(v -> v.getModele().getMarque().getId() == marque)
+																					.filter(v -> v.getModele().getCategorie().getId() == categorie)
+																	                .collect(Collectors.toList());
+																		}
+																		else
+																		{
+
+																			if(couleur != null && carburant == null && boiteVitesse == null && marque == 0 && categorie != 0)
+																			{
+																				listreturn = list.stream()
+																						.filter(v -> v.getCouleur().equals(couleur))																						
+																						.filter(v -> v.getModele().getCategorie().getId() == categorie)
+																		                .collect(Collectors.toList());
+																			}
+																			else
+																			{
+
+																				if(couleur != null && carburant != null && boiteVitesse == null && marque == 0 && categorie == 0)
+																				{
+																					listreturn = list.stream()
+																							.filter(v -> v.getCouleur().equals(couleur))
+																							.filter(v -> v.getCarburant().equals(carburant))
+																			                .collect(Collectors.toList());
+																				}
+																				else
+																				{
+
+																					if(couleur != null && carburant == null && boiteVitesse == null && marque == 0 && categorie == 0)
+																					{
+																						listreturn = list.stream()
+																								.filter(v -> v.getCouleur().equals(couleur))
+																								.filter(v -> v.getCarburant().equals(carburant))
+																								.filter(v -> v.getBoiteVitesse().equals(boiteVitesse))
+																								.filter(v -> v.getModele().getMarque().getId() == marque)
+																								.filter(v -> v.getModele().getCategorie().getId() == categorie)
+																				                .collect(Collectors.toList());
+																					}
+																					else
+																					{
+
+																						if(couleur == null && carburant != null && boiteVitesse == null && marque == 0 && categorie == 0)
+																						{
+																							listreturn = list.stream()
+																									.filter(v -> v.getCarburant().equals(carburant))
+																					                .collect(Collectors.toList());
+																						}
+																						else
+																						{
+
+																							if(couleur == null && carburant == null && boiteVitesse != null && marque == 0 && categorie == 0)
+																							{
+																								listreturn = list.stream()
+																										.filter(v -> v.getBoiteVitesse().equals(boiteVitesse))
+																						                .collect(Collectors.toList());
+																							}
+																							else
+																							{
+
+																								if(couleur == null && carburant == null && boiteVitesse == null && marque != 0 && categorie == 0)
+																								{
+																									listreturn = list.stream()
+																											.filter(v -> v.getModele().getMarque().getId() == marque)
+																							                .collect(Collectors.toList());
+																								}
+																								else
+																								{
+
+																									if(couleur == null && carburant == null && boiteVitesse == null && marque == 0 && categorie != 0)
+																									{
+																										listreturn = list.stream()
+																												.filter(v -> v.getModele().getCategorie().getId() == categorie)
+																								                .collect(Collectors.toList());
+																									}
+																									else
+																									{
+																										return null;
+																									}
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		return listreturn;
 	}
 }
