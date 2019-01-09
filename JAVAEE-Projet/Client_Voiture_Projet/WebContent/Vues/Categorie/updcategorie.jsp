@@ -5,7 +5,7 @@
 <!-- Header -->
 <%@ include file='/Vues/Canva\\header.jsp' %>
 
-<h1>Modifier Categorie</h1>
+<h2>Modifier Categorie</h2>
 <form action="/Client_Voiture_Projet/GestionCategorie" method="GET">
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
