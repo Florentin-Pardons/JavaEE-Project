@@ -29,7 +29,7 @@ public class Modele_DAO {
 		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
 				.path("modele")
-				.type("applimodion/x-www-form-urlencoded")
+				.type("application/x-www-form-urlencoded")
 				.post(ClientResponse.class, params);
 		System.out.println(jsonAnswer); //
 		
@@ -44,8 +44,8 @@ public class Modele_DAO {
 	{		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
 				.path("modele")
-				.queryParam("Id", Integer.toString(mod.getId()))
-				.delete(ClientResponse .class);
+				.queryParam("id", Integer.toString(mod.getId()))
+				.delete(ClientResponse.class);
 		System.out.println(jsonAnswer); //
 		
 		if(jsonAnswer.getStatus() == 200) //update ok
@@ -67,7 +67,7 @@ public class Modele_DAO {
 		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
 				.path("modele")
-				.type("applimodion/x-www-form-urlencoded")
+				.type("application/x-www-form-urlencoded")
 				.put(ClientResponse.class, params);
 		System.out.println(jsonAnswer); //
 		
