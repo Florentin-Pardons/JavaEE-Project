@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import javabean.Modele;
+import javabean.Utilisateur;
 import javabean.Voiture;
 
 @WebServlet("/GestionVoiture")
@@ -36,7 +37,7 @@ public class GestionVoiture extends HttpServlet {
 		{
 			int id = Integer.parseInt(request.getParameter("id"));
 			Voiture mod = new Voiture();
-			mod.Trouver(id);
+			mod = mod.Trouver(id);
 			
 			request.setAttribute("voiture", mod);
 			
@@ -75,10 +76,14 @@ public class GestionVoiture extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("id"));
 			
 			Voiture mar = new Voiture();
-			mar.Trouver(id);
+			mar = mar.Trouver(id);
+			mar.Delete();
 			
-			request.setAttribute("titre", "Accueil");
-			getServletContext().getRequestDispatcher("/Vues/Accueil\\accueil.jsp").forward(request, response);
+			List<Voiture> listvoi = Voiture.List();
+			request.setAttribute("listvoiture", listvoi);
+			
+			request.setAttribute("titre", "Gestion des Voitures");
+			getServletContext().getRequestDispatcher("/Vues/Voiture\\listvoiture.jsp").forward(request, response);
 		}
 		
 		//Redirection vers la page Creer
@@ -100,12 +105,14 @@ public class GestionVoiture extends HttpServlet {
 			int age = Integer.parseInt(request.getParameter("age"));
 			boolean dispo = Integer.parseInt(request.getParameter("dispo"))!=0?true:false;
 			int modele = Integer.parseInt(request.getParameter("modele"));
+			Utilisateur user = (Utilisateur)session.getAttribute("utilisateur");
 			
 			//Creer			
 			Modele mod = new Modele();
-			mod.Trouver(modele);
+			mod = mod.Trouver(modele);
 			
 			Voiture voiture = new Voiture(couleur, carburant, boiteVitesse, nbkm, age, dispo, mod);
+			voiture.setUtilisateur(user);
 			voiture.Creer();
 			
 			request.setAttribute("titre", "Gestion des Voitures");
