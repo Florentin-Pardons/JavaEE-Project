@@ -31,7 +31,7 @@ public class Marque_DAO {
 		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
 				.path("marque")
-				.type("applimarion/x-www-form-urlencoded")
+				.type("application/x-www-form-urlencoded")
 				.post(ClientResponse.class, params);
 		System.out.println(jsonAnswer); //
 		
@@ -46,8 +46,8 @@ public class Marque_DAO {
 	{		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
 				.path("marque")
-				.queryParam("Id", Integer.toString(mar.getId()))
-				.delete(ClientResponse .class);
+				.queryParam("id", Integer.toString(mar.getId()))
+				.delete(ClientResponse.class);
 		System.out.println(jsonAnswer); //
 		
 		if(jsonAnswer.getStatus() == 200) //update ok
@@ -59,7 +59,7 @@ public class Marque_DAO {
 	//Update
 	public boolean update(Marque mar) throws JsonParseException, JsonMappingException, IOException
 	{		
-		DateFormat dateform = new SimpleDateFormat("MM/dd/yyyy");
+		DateFormat dateform = new SimpleDateFormat("dd/MM/yyyy");
 		MultivaluedMap<String,String> params = new MultivaluedMapImpl();
 		params.add("id", Integer.toString(mar.getId()));
 		params.add("nom", mar.getNom());
@@ -68,7 +68,7 @@ public class Marque_DAO {
 		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
 				.path("marque")
-				.type("applimarion/x-www-form-urlencoded")
+				.type("application/x-www-form-urlencoded")
 				.put(ClientResponse.class, params);
 		System.out.println(jsonAnswer); //
 		
@@ -83,7 +83,7 @@ public class Marque_DAO {
 	{		
 		String jsonAnswer = VTConnection.accessToAPI()
 				.path("marque")
-				.queryParam("Id", Integer.toString(id))
+				.queryParam("id", Integer.toString(id))
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
 		System.out.println(jsonAnswer); //
