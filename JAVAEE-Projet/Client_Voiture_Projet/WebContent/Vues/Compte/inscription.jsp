@@ -3,22 +3,35 @@
 <%@ include file='/Vues/Canva\\header.jsp' %>
 
 
-<h1>Inscription</h1>
-<form action="/Client_Voiture_Projet/Profil" method="POST">
+<h2>Inscription</h2>
+<form action="/Client_Voiture_Projet/Inscription" method="GET">
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
-		    <td>Identifiant/Login : </td>
-		    <td><input type="text" name="identifiant" id="identifiant"
-		value="" size="20"/></td>
+		    <td> Mail : </td>
+		    <td><input type="text" name="mail" id="mail" value="" size="20"/></td>
 		</tr>
 		<tr>
-		    <td>Mot de passe : </td>
-		    <td><input type="text" name="motdepasse" id="motdepasse"
-		value="" size="20"/></td>
+		    <td> Mot de passe : </td>
+		    <td><input type="text" name="mp" id="mp" value="" size="20"/></td>
 		</tr>
 		<tr>
-		    <td colspan="2" align="center"><input type="submit"
-		name="valider" id="valider" value="Valider"/></td>
+		    <td> Nom : </td>
+		    <td><input type="text" name="nom" id="nom" value="" size="20"/></td>
+		</tr>
+		<tr>
+		    <td> Prenom : </td>
+		    <td><input type="text" name="prenom" id="prenom" value="" size="20"/></td>
+		</tr>
+		<tr>
+		    <td> Date Naissance : </td>
+		    <td><input type="text" name="datenaissance" id="datenaissance" value="" size="20"/></td>
+		</tr>
+		<tr>
+		    <td> Adresse: </td>
+		    <td><input type="text" name="adresse" id="adresse" value="" size="20"/></td>
+		</tr>
+		<tr>
+		    <td colspan="2" align="center"><input type="submit" name="insert2" id="insert" value="Ajouter"/></td>
 		</tr>
 	</table>
 </form>
