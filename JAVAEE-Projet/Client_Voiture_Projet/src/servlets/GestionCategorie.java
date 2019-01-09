@@ -36,7 +36,7 @@ public class GestionCategorie extends HttpServlet {
 		{
 			int id = Integer.parseInt(request.getParameter("id"));
 			Categorie cat = new Categorie();
-			cat.Trouver(id);
+			cat = cat.Trouver(id);
 			
 			request.setAttribute("categorie", cat);
 			
@@ -69,10 +69,14 @@ public class GestionCategorie extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("id"));
 			
 			Categorie mar = new Categorie();
-			mar.Trouver(id);
+			mar = mar.Trouver(id);
+			mar.Delete();
 			
-			request.setAttribute("titre", "Accueil");
-			getServletContext().getRequestDispatcher("/Vues/Accueil\\accueil.jsp").forward(request, response);
+			List<Categorie> listmar = Categorie.List();
+			request.setAttribute("listcategorie", listmar);
+			
+			request.setAttribute("titre", "Gestion des Categories");
+			getServletContext().getRequestDispatcher("/Vues/Categorie\\listcategorie.jsp").forward(request, response);
 		}
 		
 		//Redirection vers la page Creer
@@ -84,16 +88,19 @@ public class GestionCategorie extends HttpServlet {
 		
 		if(request.getParameter("insert2") != null)
 		{
-			int id = Integer.parseInt(request.getParameter("id"));
+			//int id = Integer.parseInt(request.getParameter("id"));
 			String nom = request.getParameter("nom");
 			String description = request.getParameter("description");
 			
 			//Creer
 			Categorie categorie = new Categorie();
-			categorie.setId(id);
+			//categorie.setId(id);
 			categorie.setNom(nom);
 			categorie.setDescription(description);
 			categorie.Creer();
+			
+			List<Categorie> listmar = Categorie.List();
+			request.setAttribute("listcategorie", listmar);
 			
 			request.setAttribute("titre", "Gestion des Categories");
 			getServletContext().getRequestDispatcher("/Vues/Categorie\\listcategorie.jsp").forward(request, response);
