@@ -10,7 +10,7 @@
 <!-- Header -->
 <%@ include file='/Vues/Canva\\header.jsp' %>
 
-<h1>Ajouter une Modele</h1>
+<h1>Modifier une Modele</h1>
 <form action="/Client_Voiture_Projet/GestionModele" method="GET">
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
