@@ -4,8 +4,22 @@
 <!-- Header -->
 <%@ include file='/Vues/Canva\\header.jsp' %>
 
-<h1>Liste des voitures</h1>
+<h2>Liste des voitures</h2>
 <table class="table">
+	<thead>
+    	<tr>
+           	<th>Id</th>
+           	<th>Couleur</th>
+           	<th>Carburant</th>
+           	<th>Boite de Vitesse</th>
+           	<th>Nb de KM</th>
+           	<th>Age</th>
+           	<th>Dispo</th>
+           	<th>Modele</th>
+           	<th>Modifier</th>
+           	<th>Supprimer</th>
+       	</tr>
+   	</thead>
     <tbody>        
         <% List<Voiture> listvoiture = (List<Voiture>)request.getAttribute("listvoiture");
 
