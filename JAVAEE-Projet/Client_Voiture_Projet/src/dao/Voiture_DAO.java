@@ -32,7 +32,7 @@ public class Voiture_DAO {
 		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
 				.path("voiture")
-				.type("applivoiion/x-www-form-urlencoded")
+				.type("application/x-www-form-urlencoded")
 				.post(ClientResponse.class, params);
 		System.out.println(jsonAnswer); //
 		
@@ -47,8 +47,8 @@ public class Voiture_DAO {
 	{		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
 				.path("voiture")
-				.queryParam("Id", Integer.toString(voi.getId()))
-				.delete(ClientResponse .class);
+				.queryParam("id", Integer.toString(voi.getId()))
+				.delete(ClientResponse.class);
 		System.out.println(jsonAnswer); //
 		
 		if(jsonAnswer.getStatus() == 200) //update ok
@@ -72,7 +72,7 @@ public class Voiture_DAO {
 		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
 				.path("voiture")
-				.type("applivoiion/x-www-form-urlencoded")
+				.type("application/x-www-form-urlencoded")
 				.put(ClientResponse.class, params);
 		System.out.println(jsonAnswer); //
 		
@@ -87,7 +87,7 @@ public class Voiture_DAO {
 	{		
 		String jsonAnswer = VTConnection.accessToAPI()
 				.path("voiture")
-				.queryParam("Id", Integer.toString(id))
+				.queryParam("id", Integer.toString(id))
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
 		System.out.println(jsonAnswer); //
