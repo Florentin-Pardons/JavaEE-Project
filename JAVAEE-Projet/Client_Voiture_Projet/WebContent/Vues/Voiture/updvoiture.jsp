@@ -8,7 +8,7 @@
 <!-- Header -->
 <%@ include file='/Vues/Canva\\header.jsp' %>
 
-<h1>Ajouter une Voiture</h1>
+<h2>Ajouter une Voiture</h2>
 <form action="/Client_Voiture_Projet/GestionVoiture" method="GET">
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
@@ -32,8 +32,17 @@
 		    <td><input type="text" name="nbkm" id="nbkm" value="<% out.println(voi.getNbkm()); %>" size="20"/></td>
 		</tr>
 		<tr>
-		    <td> Dispo : </td>
-		    <td><input type="text" name="age" id="age" value="<% out.println(voi.isDispo()); %>" size="20"/></td>
+		    <td> Disponibilité: </td>
+		    <td>
+			    <div class="form-group">
+		            <label class="radio-inline">
+		                <input type="radio" name="dispo" value="0" checked>Disponible
+		            </label>
+		            <label class="radio-inline">
+		                <input type="radio" name="dispo" value="1">Non-Disponible
+		            </label>
+	        	</div>
+        	</td>
 		</tr>
        	<tr>
        		<td> Modele : </td>
