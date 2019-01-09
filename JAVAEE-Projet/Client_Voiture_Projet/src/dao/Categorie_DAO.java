@@ -42,8 +42,8 @@ public class Categorie_DAO {
 	{		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
 				.path("categorie")
-				.queryParam("Id", Integer.toString(cat.getId()))
-				.delete(ClientResponse .class);
+				.queryParam("id", Integer.toString(cat.getId()))
+				.delete(ClientResponse.class);
 		System.out.println(jsonAnswer); //
 		
 		if(jsonAnswer.getStatus() == 200) //update ok
