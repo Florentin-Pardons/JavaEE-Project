@@ -49,7 +49,7 @@ public class GestionUtilisateur extends HttpServlet {
 		
 		if(request.getParameter("update2") != null)
 		{
-			SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			
 			int id = Integer.parseInt(request.getParameter("id"));
 			String mail = request.getParameter("mail");
@@ -70,10 +70,12 @@ public class GestionUtilisateur extends HttpServlet {
 			Utilisateur utilisateur = new Utilisateur(id, mail, mp, nom, prenom, datenaissance, adresse, role);
 			utilisateur.Update();
 			
+			List<Utilisateur> listuser = Utilisateur.List();
+			request.setAttribute("listutilisateur", listuser);
+			
 			//Redirection
 			request.setAttribute("titre", "Gestion des Utilisateurs");
 			getServletContext().getRequestDispatcher("/Vues/Utilisateur\\listutilisateur.jsp").forward(request, response);
-			//response.sendRedirect("/Client_Voiture_Projet/GestionUtilisateur");
 		}
 		
 		if(request.getParameter("delete") != null)
@@ -81,10 +83,14 @@ public class GestionUtilisateur extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("id"));
 			
 			Utilisateur mar = new Utilisateur();
-			mar.Trouver(id);
+			mar = mar.Trouver(id);
+			mar.Delete();
 			
-			request.setAttribute("titre", "Accueil");
-			getServletContext().getRequestDispatcher("/Vues/Accueil\\accueil.jsp").forward(request, response);
+			List<Utilisateur> listuser = Utilisateur.List();
+			request.setAttribute("listutilisateur", listuser);
+			
+			request.setAttribute("titre", "Gestion des Utilisateurs");
+			getServletContext().getRequestDispatcher("/Vues/Utilisateur\\listutilisateur.jsp").forward(request, response);
 		}
 		
 		//Redirection vers la page Creer
@@ -96,7 +102,7 @@ public class GestionUtilisateur extends HttpServlet {
 		
 		if(request.getParameter("insert2") != null)
 		{
-			SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			
 			String mail = request.getParameter("mail");
 			String mp = request.getParameter("mp");
