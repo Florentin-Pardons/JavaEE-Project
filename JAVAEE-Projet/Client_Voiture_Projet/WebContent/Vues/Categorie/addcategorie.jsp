@@ -2,7 +2,7 @@
 <%@ include file='/Vues/Canva\\header.jsp' %>
 
 
-<h1>Ajouter une Categorie</h1>
+<h2>Ajouter une Categorie</h2>
 <form action="/Client_Voiture_Projet/GestionCategorie" method="GET">
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
