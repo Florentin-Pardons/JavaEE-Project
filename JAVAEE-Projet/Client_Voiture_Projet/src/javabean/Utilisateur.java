@@ -22,7 +22,6 @@ public class Utilisateur {
 	private String adresse;
 	private boolean role;
 	private List<Voiture> listVoiture;
-	private List<Commentaire> listVommentaire;
 	private List<Reservation> listReservation;
 
 	//Getter et Setteur
@@ -98,14 +97,6 @@ public class Utilisateur {
 		this.listVoiture = listVoiture;
 	}
 
-	public List<Commentaire> getListVommentaire() {
-		return listVommentaire;
-	}
-
-	public void setListVommentaire(List<Commentaire> listVommentaire) {
-		this.listVommentaire = listVommentaire;
-	}
-
 	public List<Reservation> getListReservation() {
 		return listReservation;
 	}
@@ -130,7 +121,6 @@ public class Utilisateur {
 		this.adresse = adresse;
 		this.role = role;
 		this.listVoiture = new ArrayList<Voiture>();
-		this.listVommentaire = new ArrayList<Commentaire>();
 		this.listReservation = new ArrayList<Reservation>();
 	}
 	
@@ -145,7 +135,6 @@ public class Utilisateur {
 		this.adresse = adresse;
 		this.role = role;
 		this.listVoiture = new ArrayList<Voiture>();
-		this.listVommentaire = new ArrayList<Commentaire>();
 		this.listReservation = new ArrayList<Reservation>();
 	}
 	
@@ -196,7 +185,7 @@ public class Utilisateur {
 		
 		if(mail.equals("test") && mp.equals("test"))
 		{
-			Utilisateur user = new Utilisateur(1,"admin","sss", "tsssss", "sedfsfd", new Date(01/01/1990), "sfhjkdnf", true);
+			Utilisateur user = new Utilisateur(1,"admin","sss", "tsssss", "sedfsfd", new Date(01/01/1990), "sfhjkdnf", false);
 			return user;
 		}
 		else
