@@ -4,8 +4,17 @@
 <!-- Header -->
 <%@ include file='/Vues/Canva\\header.jsp' %>
 
-<h1>Liste des categories</h1>
+<h2>Liste des categories</h2>
 <table class="table">
+	<thead>
+    	<tr>
+           	<th>Id</th>
+           	<th>Nom</th>
+           	<th>Description</th>
+           	<th>Modifier</th>
+           	<th>Supprimer</th>
+       	</tr>
+   	</thead>
     <tbody>        
         <% List<Categorie> listcategorie = (List<Categorie>)request.getAttribute("listcategorie");
 
