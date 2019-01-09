@@ -1,11 +1,13 @@
 <%@ page import="javabean.Utilisateur" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 
 <% Utilisateur user = (Utilisateur)request.getAttribute("utilisateur"); %>
+<% SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); %>
 
 <!-- Header -->
 <%@ include file='/Vues/Canva\\header.jsp' %>
 
-<h1>Modifier Utilisateur</h1>
+<h2>Modifier Utilisateur</h2>
 <form action="/Client_Voiture_Projet/GestionUtilisateur" method="GET">
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
@@ -30,7 +32,7 @@
 		</tr>
 		<tr>
 		    <td> Date Naissance : </td>
-		    <td><input type="text" name="datenaissance" id="datenaissance" value="<% out.println(user.getDateNaissance()); %>" size="20"/></td>
+		    <td><input type="text" name="datenaissance" id="datenaissance" value="<% out.println(formatter.format(user.getDateNaissance())); %>" size="20"/></td>
 		</tr>
 		<tr>
 		    <td> Adresse: </td>
@@ -38,7 +40,16 @@
 		</tr>
 		<tr>
 		    <td> Role: </td>
-		    <td><input type="text" name="role" id="role" value="<% out.println(user.isRole()); %>" size="20"/></td>
+		    <td>
+			    <div class="form-group">
+		            <label class="radio-inline">
+		                <input type="radio" name="role" value="0" checked>Utilisateur
+		            </label>
+		            <label class="radio-inline">
+		                <input type="radio" name="role" value="1">Administrateur
+		            </label>
+	        	</div>
+        	</td>
 		</tr>
 		<tr>
 		    <td colspan="2" align="center"><input type="submit" name="update2" id="update2" value="Modifier"/></td>
