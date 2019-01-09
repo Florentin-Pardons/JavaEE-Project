@@ -2,7 +2,7 @@
 <%@ include file='/Vues/Canva\\header.jsp' %>
 
 
-<h1>Ajouter une Utilisateur</h1>
+<h2>Ajouter un utilisateur</h2>
 <form action="/Client_Voiture_Projet/GestionUtilisateur" method="GET">
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
@@ -31,7 +31,16 @@
 		</tr>
 		<tr>
 		    <td> Role: </td>
-		    <td><input type="text" name="role" id="role" value="" size="20"/></td>
+		    <td>
+			    <div class="form-group">
+		            <label class="radio-inline">
+		                <input type="radio" name="role" value="0" checked>Utilisateur
+		            </label>
+		            <label class="radio-inline">
+		                <input type="radio" name="role" value="1">Administrateur
+		            </label>
+	        	</div>
+        	</td>
 		</tr>
 		<tr>
 		    <td colspan="2" align="center"><input type="submit" name="insert2" id="insert2" value="Ajouter"/></td>
