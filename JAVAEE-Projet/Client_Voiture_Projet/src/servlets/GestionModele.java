@@ -37,7 +37,7 @@ public class GestionModele extends HttpServlet {
 		{
 			int id = Integer.parseInt(request.getParameter("id"));
 			Modele mod = new Modele();
-			mod.Trouver(id);
+			mod = mod.Trouver(id);
 			
 			request.setAttribute("modele", mod);
 			
@@ -62,18 +62,20 @@ public class GestionModele extends HttpServlet {
 			
 			//Modification
 			Marque mar = new Marque();
-			mar.Trouver(marque);
+			mar = mar.Trouver(marque);
 			
 			Categorie cat = new Categorie();
-			cat.Trouver(categorie);
+			cat = cat.Trouver(categorie);
 			
 			Modele modele = new Modele(id, nom, nbporte, volumecoffre, mar, cat);
 			modele.Update();
 			
+			List<Modele> listmar = Modele.List();
+			request.setAttribute("listmodele", listmar);
+			
 			//Redirection
 			request.setAttribute("titre", "Gestion des Modeles");
 			getServletContext().getRequestDispatcher("/Vues/Modele\\listmodele.jsp").forward(request, response);
-			//response.sendRedirect("/Client_Voiture_Projet/GestionModele");
 		}
 		
 		if(request.getParameter("delete") != null)
@@ -81,10 +83,14 @@ public class GestionModele extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("id"));
 			
 			Modele mar = new Modele();
-			mar.Trouver(id);
+			mar = mar.Trouver(id);
+			mar.Delete();
 			
-			request.setAttribute("titre", "Accueil");
-			getServletContext().getRequestDispatcher("/Vues/Accueil\\accueil.jsp").forward(request, response);
+			List<Modele> listmar = Modele.List();
+			request.setAttribute("listmodele", listmar);
+			
+			request.setAttribute("titre", "Gestion des Modeles");
+			getServletContext().getRequestDispatcher("/Vues/Modele\\listmodele.jsp").forward(request, response);
 		}
 		
 		//Redirection vers la page Creer
@@ -110,13 +116,16 @@ public class GestionModele extends HttpServlet {
 			
 			//Creer
 			Marque mar = new Marque();
-			mar.Trouver(marque);
+			mar = mar.Trouver(marque);
 			
 			Categorie cat = new Categorie();
-			cat.Trouver(categorie);
+			cat = cat.Trouver(categorie);
 			
 			Modele modele = new Modele(nom, nbporte, volumecoffre, mar, cat);
 			modele.Creer();
+			
+			List<Modele> listmar = Modele.List();
+			request.setAttribute("listmodele", listmar);
 			
 			request.setAttribute("titre", "Gestion des Modeles");
 			getServletContext().getRequestDispatcher("/Vues/Modele\\listmodele.jsp").forward(request, response);
