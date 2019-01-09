@@ -24,7 +24,6 @@ public class Utilisateur_DAO {
 	{		
 		DateFormat dateform = new SimpleDateFormat("dd/MM/yyyy");
 		MultivaluedMap<String,String> params = new MultivaluedMapImpl();
-		//params.add("id", Integer.toString(user.getId()));
 		params.add("mail", user.getMail());
 		params.add("motdepasse", user.getMp());
 		params.add("nom", user.getNom());
@@ -35,7 +34,7 @@ public class Utilisateur_DAO {
 		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
 				.path("utilisateur")
-				.type("appliuserion/x-www-form-urlencoded")
+				.type("application/x-www-form-urlencoded")
 				.post(ClientResponse.class, params);
 		System.out.println(jsonAnswer); //
 		
@@ -50,7 +49,7 @@ public class Utilisateur_DAO {
 	{		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
 				.path("utilisateur")
-				.queryParam("Id", Integer.toString(user.getId()))
+				.queryParam("id", Integer.toString(user.getId()))
 				.delete(ClientResponse .class);
 		System.out.println(jsonAnswer); //
 		
@@ -76,7 +75,7 @@ public class Utilisateur_DAO {
 		
 		ClientResponse jsonAnswer = VTConnection.accessToAPI()
 				.path("utilisateur")
-				.type("appliuserion/x-www-form-urlencoded")
+				.type("application/x-www-form-urlencoded")
 				.put(ClientResponse.class, params);
 		System.out.println(jsonAnswer); //
 		
