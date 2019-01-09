@@ -6,6 +6,18 @@
 
 <h1>Liste des modeles</h1>
 <table class="table">
+	<thead>
+    	<tr>
+           	<th>Id</th>
+           	<th>Nom</th>
+           	<th>Nb Portes</th>
+           	<th>Volume Coffre</th>
+           	<th>Marque</th>
+           	<th>Categorie</th>
+           	<th>Modifier</th>
+           	<th>Supprimer</th>
+       	</tr>
+   	</thead>
     <tbody>        
         <% List<Modele> listmodele = (List<Modele>)request.getAttribute("listmodele");
 
