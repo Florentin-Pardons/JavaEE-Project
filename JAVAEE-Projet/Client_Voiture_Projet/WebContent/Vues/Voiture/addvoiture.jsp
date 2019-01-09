@@ -6,7 +6,7 @@
 <!-- Header -->
 <%@ include file='/Vues/Canva\\header.jsp' %>
 
-<h1>Ajouter une Modele</h1>
+<h2>Ajouter une Voiture</h2>
 <form action="/Client_Voiture_Projet/GestionModele" method="GET">
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
@@ -26,18 +26,48 @@
 		    <td><input type="text" name="nbkm" id="nbkm" value="" size="20"/></td>
 		</tr>
 		<tr>
-		    <td> Dispo : </td>
-		    <td><input type="text" name="age" id="age" value="" size="20"/></td>
+		    <td> Disponibilité: </td>
+		    <td>
+			    <div class="form-group">
+		            <label class="radio-inline">
+		                <input type="radio" name="dispo" value="0" checked>Disponible
+		            </label>
+		            <label class="radio-inline">
+		                <input type="radio" name="dispo" value="1">Non-Disponible
+		            </label>
+	        	</div>
+        	</td>
 		</tr>
        	<tr>
        		<td> Modele : </td>
        		<td>
        			<select name="modele" id="modele">
        			<%
+       				String mar = "";
+       			
 					for(Modele mod : listmodele)
 					{
-						out.println("<option value=" + mod.getId() + ">" + mod.getNom() + "</option>");
+						if(mar.equals(""))
+						{
+							mar = mod.getMarque().getNom();
+							out.println("<optgroup label=" + mar + ">");
+						}
+						else 
+						{
+							if(mar.equals(mod.getMarque().getNom()))
+							{
+								out.println("<option value=" + mod.getId() + ">" + mod.getNom() + "</option>");
+							}
+							else
+							{
+								out.println("</optgroup>");
+								mar = mod.getMarque().getNom();
+								out.println("<optgroup label=" + mar + ">");
+								out.println("<option value=" + mod.getId() + ">" + mod.getNom() + "</option>");
+							}
+						}
 					}
+					out.println("</optgroup>");
 				%>
        			</select>
        		</td>
