@@ -42,7 +42,7 @@ public class Utilisateur_Rest {
 		
 		try
 		{
-			stmt = connec.prepareCall("{ ? = call PAK_UTILISATEUR.AJOUTER(?,?,?,?,?,?,?)}");
+			stmt = connec.prepareCall("{ ? = call PAK_PERSONNE.AJOUTER(?,?,?,?,?,?,?)}");
 			stmt.registerOutParameter(1, OracleTypes.NUMBER);
 			stmt.setString(2, mail);
 			stmt.setString(3, motdepasse);
@@ -77,7 +77,7 @@ public class Utilisateur_Rest {
 		
 		try
 		{
-			stmt = connec.prepareCall("{call PAK_UTILISATEUR.SUPPRIMER(?)}");
+			stmt = connec.prepareCall("{call PAK_PERSONNE.SUPPRIMER(?)}");
 			stmt.setInt(1, id);
 			stmt.execute();
 
@@ -108,7 +108,7 @@ public class Utilisateur_Rest {
 		
 		try
 		{
-			stmt = connec.prepareCall("{call PAK_UTILISATEUR.MODIFIER(?,?,?,?,?,?,?,?)}");
+			stmt = connec.prepareCall("{call PAK_PERSONNE.MODIFIER(?,?,?,?,?,?,?,?)}");
 			stmt.setInt(1, id);
 			stmt.setString(2, mail);
 			stmt.setString(3, motdepasse);
@@ -141,7 +141,7 @@ public class Utilisateur_Rest {
         
 		try
 		{
-			stmt = connec.prepareCall("{ ? = call PAK_UTILISATEUR.TROUVER(?)}");
+			stmt = connec.prepareCall("{ ? = call PAK_PERSONNE.TROUVER(?)}");
 			stmt.registerOutParameter(1, OracleTypes.CURSOR);
 			stmt.setInt(2, id);
 			stmt.execute();
@@ -181,7 +181,7 @@ public class Utilisateur_Rest {
 		
 		try
 		{
-			stmt = connec.prepareCall("{ ? = call PAK_UTILISATEUR.TOUS()}");
+			stmt = connec.prepareCall("{ ? = call PAK_PERSONNE.TOUS()}");
 			stmt.registerOutParameter(1, OracleTypes.CURSOR);
 			stmt.execute();
 			res = (ResultSet)stmt.getObject(1);
@@ -189,8 +189,6 @@ public class Utilisateur_Rest {
 			while(res.next()) //get all
 			{
 				Utilisateur user = new Utilisateur();
-				
-				user = new Utilisateur();
 				user.setId(res.getInt("NUM_PERS_PK"));
 				user.setMail(res.getString("MAIL"));
 				user.setMp(res.getString("MOTDEPASSE"));
@@ -198,7 +196,7 @@ public class Utilisateur_Rest {
 				user.setPrenom(res.getString("PRENOM"));
 				user.setDateNaissance(res.getTimestamp("DATENAISSANCE"));
 				user.setAdresse(res.getString("ADRESSE"));
-				//user.setRole(res.getInt("STATUT")!=0?true:false);	
+				user.setRole(res.getInt("STATUT")!=0?true:false);	
 				
 				listUtilisateur.add(user);
 			}

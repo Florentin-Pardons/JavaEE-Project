@@ -159,10 +159,6 @@ public class Marque_Rest {
 		ResultSet res = null;
 		
 		List<Marque> listMarque = new ArrayList<Marque>();
-		/*Marque mar = new Marque();
-		mar.setNom("test");
-		listMarque.add(mar);
-		return Response.status(Status.OK).entity(listMarque).build();*/
 		
 		try
 		{

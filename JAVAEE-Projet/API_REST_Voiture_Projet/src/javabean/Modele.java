@@ -1,5 +1,6 @@
 package javabean;
 
+
 public class Modele {
 
 	//Variable

@@ -11,6 +11,7 @@ public class Voiture {
 	private int age;
 	private boolean dispo;
 	private Modele modele;
+	private Utilisateur user;
 		
 	//Getter et Setteur
 	public int getId() {
@@ -76,6 +77,14 @@ public class Voiture {
 
 	public void setModele(Modele modele) {
 		this.modele = modele;
+	}
+	
+	public Utilisateur getUtilisateur() {
+		return user;
+	}
+
+	public void setUtilisateur(Utilisateur user) {
+		this.user = user;
 	}
 	
 	//Constructeur

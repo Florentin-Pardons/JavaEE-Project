@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response.Status;
 import javabean.Categorie;
 import javabean.Marque;
 import javabean.Modele;
+import javabean.Utilisateur;
 import javabean.Voiture;
 
 import oracle.jdbc.internal.OracleTypes;
@@ -145,10 +146,12 @@ public class Voiture_Rest {
 		Modele mod = new Modele();
 		Marque mar = new Marque();
 		Categorie cat = new Categorie();
+		Utilisateur user = new Utilisateur();
 		
         int id_mod = 0;
         int id_mar = 0;
-        int id_cat = 0;        
+        int id_cat = 0;
+        int id_user = 0;
         
 		try
 		{
@@ -167,6 +170,7 @@ public class Voiture_Rest {
 				voi.setNbkm(res.getInt("KILOMETRAGE"));
 				voi.setAge(res.getInt("AGE"));
 				id_mod = res.getInt("NUM_MODELE_FK");
+				id_user = res.getInt("NUM_PERS_FK");
 			}
 			
 			//init modele
@@ -231,9 +235,35 @@ public class Voiture_Rest {
 			else
 				return Response.status(Status.BAD_REQUEST).build();
 			
+			//init personne
+			if(id_user != 0)
+			{
+				stmt = connec.prepareCall("{ ? = call PAK_PERSONNE.TROUVER(?)}");
+				stmt.registerOutParameter(1, OracleTypes.CURSOR);
+				stmt.setInt(2, id_user);
+				stmt.execute();
+				res = (ResultSet)stmt.getObject(1);
+				
+				if(res.next()) //get by
+				{
+					user = new Utilisateur();
+					user.setId(res.getInt("NUM_PERS_PK"));
+					user.setMail(res.getString("MAIL"));
+					user.setMp(res.getString("MOTDEPASSE"));
+					user.setNom(res.getString("NOM"));
+					user.setPrenom(res.getString("PRENOM"));
+					user.setDateNaissance(res.getTimestamp("DATENAISSANCE"));
+					user.setAdresse(res.getString("ADRESSE"));
+					user.setRole(res.getInt("STATUT")!=0?true:false);
+				}
+			}
+			else
+				return Response.status(Status.BAD_REQUEST).build();
+			
 			mod.setMarque(mar);
 			mod.setCategorie(cat);
 			voi.setModele(mod);
+			voi.setUtilisateur(user);
 		}
 		catch(SQLException e){
 			return Response.status(Status.BAD_REQUEST).build();
@@ -252,9 +282,9 @@ public class Voiture_Rest {
 		Connection connec = OracleConnexion.getInstance();
 		CallableStatement stmt = null;
 		ResultSet res = null;
-		
+        
 		List<Voiture> listVoiture = new ArrayList<Voiture>();
-		
+        
 		try
 		{
 			stmt = connec.prepareCall("{ ? = call PAK_VOITURE.TOUS()}");
@@ -266,85 +296,21 @@ public class Voiture_Rest {
 			{
 				Voiture voi = new Voiture();
 				Modele mod = new Modele();
-				Marque mar = new Marque();
-				Categorie cat = new Categorie();
+				Utilisateur user = new Utilisateur();
 				
-		        int id_mod = 0;
-		        int id_mar = 0;
-		        int id_cat = 0;
-		        
 				voi.setId(res.getInt("NUM_VOITURE_PK"));
 				voi.setCouleur(res.getString("COULEUR"));
 				voi.setCarburant(res.getString("CARBURANT"));
 				voi.setBoiteVitesse(res.getString("BOITEVITESSE"));
 				voi.setNbkm(res.getInt("KILOMETRAGE"));
 				voi.setAge(res.getInt("AGE"));
-				id_mod = res.getInt("NUM_MODELE_FK");
 				
-				//init modele
-				if(id_mod != 0)
-				{
-					CallableStatement stmt2 = connec.prepareCall("{ ? = call PAK_MODELE.TROUVER(?)}");
-					stmt2.registerOutParameter(1, OracleTypes.CURSOR);
-					stmt2.setInt(2, id_mod);
-					stmt2.execute();
-					ResultSet res2 = (ResultSet)stmt2.getObject(1);
-					
-					if(res2.next()) //get by
-					{
-						mod.setId(res2.getInt("NUM_MODELE_PK"));
-						mod.setNom(res2.getString("NOM"));
-						mod.setNbPorte(res2.getInt("NBPORTE"));
-						mod.setVolumeCoffre(res2.getInt("VOLUMECOFFRE"));
-						id_mar = res2.getInt("NUM_MARQUE_FK");	
-						id_cat = res2.getInt("NUM_CATEGORIE_FK");					
-					}
-				}
-				else
-					return Response.status(Status.BAD_REQUEST).build();
 				
-				//init marque
-				if(id_mar != 0)
-				{
-					CallableStatement stmt3 = connec.prepareCall("{ ? = call PAK_MARQUE.TROUVER(?)}");
-					stmt3.registerOutParameter(1, OracleTypes.CURSOR);
-					stmt3.setInt(2, id_mar);
-					stmt3.execute();
-					ResultSet res3 = (ResultSet)stmt3.getObject(1);
-					
-					if(res3.next()) //get by
-					{
-						mar.setId(res3.getInt("NUM_MARQUE_PK"));
-						mar.setNom(res3.getString("NOM"));
-						mar.setDateCrea(res3.getTimestamp("DATECREA"));
-						mar.setPaysOrigine(res3.getString("PAYSORIGINE"));
-					}
-				}
-				else
-					return Response.status(Status.BAD_REQUEST).build();
-				
-				//init categorie
-				if(id_cat != 0)
-				{
-					CallableStatement stmt4 = connec.prepareCall("{ ? = call PAK_CATEGORIE.TROUVER(?)}");
-					stmt4.registerOutParameter(1, OracleTypes.CURSOR);
-					stmt4.setInt(2, id_cat);
-					stmt4.execute();
-					ResultSet res4 = (ResultSet)stmt4.getObject(1);
-					
-					if(res4.next()) //get by
-					{
-						cat.setId(res4.getInt("NUM_CATEGORIE_PK"));
-						cat.setNom(res4.getString("NOM"));
-						cat.setDescription(res4.getString("DESCRIPTION"));
-					}
-				}
-				else
-					return Response.status(Status.BAD_REQUEST).build();
-				
-				mod.setMarque(mar);
-				mod.setCategorie(cat);
+				mod.setId(res.getInt("NUM_MODELE_FK"));
 				voi.setModele(mod);
+				
+				user.setId(res.getInt("NUM_PERS_FK"));
+				voi.setUtilisateur(user);
 				
 				listVoiture.add(voi);
 			}

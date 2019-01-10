@@ -49,6 +49,7 @@ public class Modele_Rest {
 			stmt.setInt(4, volumecoffre);
 			stmt.setInt(5, num_marque);
 			stmt.setInt(6, num_categorie);
+			stmt.execute();
 			res = stmt.getInt(1);
 			
 			if(res != 0) //creer
