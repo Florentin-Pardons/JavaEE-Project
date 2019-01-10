@@ -4,7 +4,7 @@
 
 
 <h2>Inscription</h2>
-<form action="/Client_Voiture_Projet/Inscription" method="GET">
+<form action="/Client_Voiture_Projet/Inscription" method="POST">
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
 		    <td> Mail : </td>

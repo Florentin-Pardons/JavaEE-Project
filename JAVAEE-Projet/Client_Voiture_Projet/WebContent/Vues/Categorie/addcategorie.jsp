@@ -3,7 +3,7 @@
 
 
 <h2>Ajouter une Categorie</h2>
-<form action="/Client_Voiture_Projet/GestionCategorie" method="GET">
+<form action="/Client_Voiture_Projet/GestionCategorie" method="POST">
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
 		    <td> Nom : </td>

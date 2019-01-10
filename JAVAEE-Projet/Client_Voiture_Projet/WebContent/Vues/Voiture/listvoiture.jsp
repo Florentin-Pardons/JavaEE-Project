@@ -34,8 +34,8 @@
 					out.println("<td>" + voi.getAge() + "</td>");
 					out.println("<td>" + voi.isDispo() + "</td>");
 					out.println("<td>" + voi.getModele().getNom() + "</p>");
-					out.println("<td> <form action=\"/Client_Voiture_Projet/GestionVoiture\" method=\"GET\"><input id=\"id\" name=\"id\" type=\"hidden\" value=\"" + voi.getId() + "\"><input type=\"submit\" name=\"update\" id=\"update\" value=\"Modifier\"/></form> </td>");
-					out.println("<td> <form action=\"/Client_Voiture_Projet/GestionVoiture\" method=\"GET\"><input id=\"id\" name=\"id\" type=\"hidden\" value=\"" + voi.getId() + "\"><input type=\"submit\" name=\"delete\" id=\"delete\" value=\"Supprimer\"/></form> </td>");
+					out.println("<td> <form action=\"/Client_Voiture_Projet/GestionVoiture\" method=\"POST\"><input id=\"id\" name=\"id\" type=\"hidden\" value=\"" + voi.getId() + "\"><input type=\"submit\" name=\"update\" id=\"update\" value=\"Modifier\"/></form> </td>");
+					out.println("<td> <form action=\"/Client_Voiture_Projet/GestionVoiture\" method=\"POST\"><input id=\"id\" name=\"id\" type=\"hidden\" value=\"" + voi.getId() + "\"><input type=\"submit\" name=\"delete\" id=\"delete\" value=\"Supprimer\"/></form> </td>");
 				out.println("</tr>");
 			}
 		%>

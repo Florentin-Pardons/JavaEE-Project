@@ -7,7 +7,7 @@
 <%@ include file='/Vues/Canva\\header.jsp' %>
 
 <h2>Ajouter une Voiture</h2>
-<form action="/Client_Voiture_Projet/GestionModele" method="GET">
+<form action="/Client_Voiture_Projet/GestionModele" method="POST">
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
 		    <td> Couleur : </td>

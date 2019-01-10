@@ -8,7 +8,7 @@
 <%@ include file='/Vues/Canva\\header.jsp' %>
 
 <h2>Modifier Marque</h2>
-<form action="/Client_Voiture_Projet/GestionMarque" method="GET">
+<form action="/Client_Voiture_Projet/GestionMarque" method="POST">
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
 		    <td> Id : </td>

@@ -9,7 +9,7 @@
 <%@ include file='/Vues/Canva\\header.jsp' %>
 
 <h1>Ajouter une Modele</h1>
-<form action="/Client_Voiture_Projet/GestionModele" method="GET">
+<form action="/Client_Voiture_Projet/GestionModele" method="POST">
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
 		    <td> Nom : </td>

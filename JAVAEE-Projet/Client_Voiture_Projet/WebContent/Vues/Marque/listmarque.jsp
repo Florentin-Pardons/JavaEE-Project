@@ -29,8 +29,8 @@
 					out.println("<td>" + mar.getNom() + "</td>");
 					out.println("<td>" + formatter.format(mar.getDateCrea()) + "</td>");
 					out.println("<td>" + mar.getPaysOrigine() + "</td>");
-					out.println("<td> <form action=\"/Client_Voiture_Projet/GestionMarque\" method=\"GET\"><input id=\"id\" name=\"id\" type=\"hidden\" value=\"" + mar.getId() + "\"><input type=\"submit\" name=\"update\" id=\"update\" value=\"Modifier\"/></form> </td>");
-					out.println("<td> <form action=\"/Client_Voiture_Projet/GestionMarque\" method=\"GET\"><input id=\"id\" name=\"id\" type=\"hidden\" value=\"" + mar.getId() + "\"><input type=\"submit\" name=\"delete\" id=\"delete\" value=\"Supprimer\"/></form> </td>");
+					out.println("<td> <form action=\"/Client_Voiture_Projet/GestionMarque\" method=\"POST\"><input id=\"id\" name=\"id\" type=\"hidden\" value=\"" + mar.getId() + "\"><input type=\"submit\" name=\"update\" id=\"update\" value=\"Modifier\"/></form> </td>");
+					out.println("<td> <form action=\"/Client_Voiture_Projet/GestionMarque\" method=\"POST\"><input id=\"id\" name=\"id\" type=\"hidden\" value=\"" + mar.getId() + "\"><input type=\"submit\" name=\"delete\" id=\"delete\" value=\"Supprimer\"/></form> </td>");
 				out.println("</tr>");
 			}
 		%>

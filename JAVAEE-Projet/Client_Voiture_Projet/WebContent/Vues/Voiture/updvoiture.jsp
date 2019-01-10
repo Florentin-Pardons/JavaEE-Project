@@ -8,8 +8,8 @@
 <!-- Header -->
 <%@ include file='/Vues/Canva\\header.jsp' %>
 
-<h2>Ajouter une Voiture</h2>
-<form action="/Client_Voiture_Projet/GestionVoiture" method="GET">
+<h2>Modifier une Voiture</h2>
+<form action="/Client_Voiture_Projet/GestionVoiture" method="POST">
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
 		    <td> Id : </td>

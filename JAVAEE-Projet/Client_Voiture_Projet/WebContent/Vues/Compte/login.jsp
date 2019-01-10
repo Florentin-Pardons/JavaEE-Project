@@ -4,7 +4,7 @@
 
 
 <h2>Login</h2>
-<form action="/Client_Voiture_Projet/Login" method="GET">
+<form action="/Client_Voiture_Projet/Login" method="POST">
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
 		    <td>mail : </td>

@@ -33,7 +33,7 @@
 					out.println("<td>" + voi.getAge() + "</td>");
 					out.println("<td>" + voi.isDispo() + "</td>");
 					out.println("<td>" + voi.getModele().getNom() + "</p>");
-					out.println("<td> <form action=\"/Client_Voiture_Projet/ListVoiture\" method=\"GET\"><input id=\"id\" name=\"id\" type=\"hidden\" value=\"" + voi.getId() + "\"><input type=\"submit\" name=\"detail\" id=\"detail\" value=\"Detail\"/></form> </td>");
+					out.println("<td> <form action=\"/Client_Voiture_Projet/ListVoiture\" method=\"POST\"><input id=\"id\" name=\"id\" type=\"hidden\" value=\"" + voi.getId() + "\"><input type=\"submit\" name=\"detail\" id=\"detail\" value=\"Detail\"/></form> </td>");
 				out.println("</tr>");
 			}
 		%>

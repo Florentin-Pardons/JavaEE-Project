@@ -24,8 +24,8 @@
 					out.println("<td>" + cat.getId() + "</td>");
 					out.println("<td>" + cat.getNom() + "</td>");
 					out.println("<td>" + cat.getDescription() + "</td>");
-					out.println("<td> <form action=\"/Client_Voiture_Projet/GestionCategorie\" method=\"GET\"><input id=\"id\" name=\"id\" type=\"hidden\" value=\"" + cat.getId() + "\"><input type=\"submit\" name=\"update\" id=\"update\" value=\"Modifier\"/></form> </td>");
-					out.println("<td> <form action=\"/Client_Voiture_Projet/GestionCategorie\" method=\"GET\"><input id=\"id\" name=\"id\" type=\"hidden\" value=\"" + cat.getId() + "\"><input type=\"submit\" name=\"delete\" id=\"delete\" value=\"Supprimer\"/></form> </td>");
+					out.println("<td> <form action=\"/Client_Voiture_Projet/GestionCategorie\" method=\"POST\"><input id=\"id\" name=\"id\" type=\"hidden\" value=\"" + cat.getId() + "\"><input type=\"submit\" name=\"update\" id=\"update\" value=\"Modifier\"/></form> </td>");
+					out.println("<td> <form action=\"/Client_Voiture_Projet/GestionCategorie\" method=\"POST\"><input id=\"id\" name=\"id\" type=\"hidden\" value=\"" + cat.getId() + "\"><input type=\"submit\" name=\"delete\" id=\"delete\" value=\"Supprimer\"/></form> </td>");
 				out.println("</tr>");
 			}
 		%>
