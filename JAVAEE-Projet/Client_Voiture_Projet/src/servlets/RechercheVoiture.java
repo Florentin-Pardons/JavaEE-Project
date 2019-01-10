@@ -12,8 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import javabean.Categorie;
 import javabean.Marque;
-import javabean.Modele;
-import javabean.Utilisateur;
 import javabean.Voiture;
 
 @WebServlet("/RechercheVoiture")
@@ -33,9 +31,25 @@ public class RechercheVoiture extends HttpServlet {
 			request.setAttribute("titre", "Accueil");
 			getServletContext().getRequestDispatcher("/Vues/Accueil\\accueil.jsp").forward(request, response);
 		}
+		else
+		{
+			List<Categorie> listcat = Categorie.List();
+			request.setAttribute("listcategorie", listcat);
+			
+			List<Marque> listmar = Marque.List();
+			request.setAttribute("listmarque", listmar);
+			
+			request.setAttribute("titre", "Recherche de Voitures");
+			getServletContext().getRequestDispatcher("/Vues/Voiture\\recherchevoiture.jsp").forward(request, response);
+		} 
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//Recherche d'une voiture
 		if(request.getParameter("recherche") != null)
 		{
+			//Recupere les champs de la vue
 			String couleur = request.getParameter("couleur");
 			String carburant = request.getParameter("carburant");
 			String boiteVitesse = request.getParameter("boiteVitesse");
@@ -53,25 +67,10 @@ public class RechercheVoiture extends HttpServlet {
 			List<Voiture> listvoi = Voiture.Chercher(couleur, carburant, boiteVitesse, marque, categorie);
 			request.setAttribute("listvoiture", listvoi);
 			
+			//Redirection
 			request.setAttribute("titre", "Liste des Voitures");
 			getServletContext().getRequestDispatcher("/Vues/Voiture\\listvoitureall.jsp").forward(request, response);
 		}
-		
-		else
-		{
-			List<Categorie> listcat = Categorie.List();
-			request.setAttribute("listcategorie", listcat);
-			
-			List<Marque> listmar = Marque.List();
-			request.setAttribute("listmarque", listmar);
-			
-			request.setAttribute("titre", "Recherche de Voitures");
-			getServletContext().getRequestDispatcher("/Vues/Voiture\\recherchevoiture.jsp").forward(request, response);
-		} 
-	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 }

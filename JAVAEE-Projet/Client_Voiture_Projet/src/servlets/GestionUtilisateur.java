@@ -26,7 +26,7 @@ public class GestionUtilisateur extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//Verifie l'utilisateur connecté
+		//Verifie que l'utilisateur connecté est un admin
 		HttpSession session=request.getSession(); 
 		if(session == null || !session.getAttribute("role").equals("admin"))
 		{
@@ -34,76 +34,32 @@ public class GestionUtilisateur extends HttpServlet {
 			getServletContext().getRequestDispatcher("/Vues/Accueil\\accueil.jsp").forward(request, response);
 		}
 		
-		//Redirection vers la page Modifier
-		if(request.getParameter("update") != null)
+		//Redirection vers la page creer categorie
+		if(request.getParameter("insert") != null)
 		{
-			int id = Integer.parseInt(request.getParameter("id"));
-			Utilisateur user = new Utilisateur();
-			user = user.Trouver(id);
-			
-			request.setAttribute("utilisateur", user);
-			
-			request.setAttribute("titre", "Modifier Utilisateur");
-			getServletContext().getRequestDispatcher("/Vues/Utilisateur\\updutilisateur.jsp").forward(request, response);
+			request.setAttribute("titre", "Ajouter Utilisateur");
+			getServletContext().getRequestDispatcher("/Vues/Utilisateur\\addutilisateur.jsp").forward(request, response);
 		}
-		
-		if(request.getParameter("update2") != null)
+		else
 		{
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-			
-			int id = Integer.parseInt(request.getParameter("id"));
-			String mail = request.getParameter("mail");
-			String mp = request.getParameter("mp");
-			String nom = request.getParameter("nom");
-			String prenom = request.getParameter("prenom");
-			Date datenaissance = null;
-			try {
-				datenaissance = formatter.parse(request.getParameter("datenaissance"));
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			String adresse = request.getParameter("adresse");
-			boolean role = Integer.parseInt(request.getParameter("role"))!=0?true:false;
-			
-			//Modification
-			Utilisateur utilisateur = new Utilisateur(id, mail, mp, nom, prenom, datenaissance, adresse, role);
-			utilisateur.Update();
-			
+			//Renvoie vers la page de gestion des utilisateurs
 			List<Utilisateur> listuser = Utilisateur.List();
 			request.setAttribute("listutilisateur", listuser);
 			
 			//Redirection
 			request.setAttribute("titre", "Gestion des Utilisateurs");
 			getServletContext().getRequestDispatcher("/Vues/Utilisateur\\listutilisateur.jsp").forward(request, response);
-		}
+		} 
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if(request.getParameter("delete") != null)
-		{
-			int id = Integer.parseInt(request.getParameter("id"));
-			
-			Utilisateur mar = new Utilisateur();
-			mar = mar.Trouver(id);
-			mar.Delete();
-			
-			List<Utilisateur> listuser = Utilisateur.List();
-			request.setAttribute("listutilisateur", listuser);
-			
-			request.setAttribute("titre", "Gestion des Utilisateurs");
-			getServletContext().getRequestDispatcher("/Vues/Utilisateur\\listutilisateur.jsp").forward(request, response);
-		}
-		
-		//Redirection vers la page Creer
-		if(request.getParameter("insert") != null)
-		{
-			request.setAttribute("titre", "Ajouter Utilisateur");
-			getServletContext().getRequestDispatcher("/Vues/Utilisateur\\addutilisateur.jsp").forward(request, response);
-		}
-		
+		//Creation d'un utilisateur
 		if(request.getParameter("insert2") != null)
 		{
 			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 			
+			//Recupere les champs de la vue
 			String mail = request.getParameter("mail");
 			String mp = request.getParameter("mp");
 			String nom = request.getParameter("nom");
@@ -112,7 +68,6 @@ public class GestionUtilisateur extends HttpServlet {
 			try {
 				datenaissance = formatter.parse(request.getParameter("datenaissance"));
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			String adresse = request.getParameter("adresse");
@@ -126,22 +81,74 @@ public class GestionUtilisateur extends HttpServlet {
 			List<Utilisateur> listuser = Utilisateur.List();
 			request.setAttribute("listutilisateur", listuser);
 			
+			//Redirection
 			request.setAttribute("titre", "Gestion des Utilisateurs");
 			getServletContext().getRequestDispatcher("/Vues/Utilisateur\\listutilisateur.jsp").forward(request, response);
-			//response.sendRedirect("/Client_Voiture_Projet/GestionUtilisateur");
 		}
-		else
+		
+		//Redirection vers la page modifier categorie
+		if(request.getParameter("update") != null)
 		{
+			int id = Integer.parseInt(request.getParameter("id"));
+			Utilisateur user = new Utilisateur();
+			user = user.Trouver(id); //recupere l'utilisateur à afficher dans la page
+			
+			request.setAttribute("utilisateur", user);
+			
+			request.setAttribute("titre", "Modifier Utilisateur");
+			getServletContext().getRequestDispatcher("/Vues/Utilisateur\\updutilisateur.jsp").forward(request, response);
+		}
+				
+		//Modifier les utilisateurs
+		if(request.getParameter("update2") != null)
+		{
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+			
+			//Recupere les champs de la vue
+			int id = Integer.parseInt(request.getParameter("id"));
+			String mail = request.getParameter("mail");
+			String mp = request.getParameter("mp");
+			String nom = request.getParameter("nom");
+			String prenom = request.getParameter("prenom");
+			Date datenaissance = null;
+			try {
+				datenaissance = formatter.parse(request.getParameter("datenaissance"));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			String adresse = request.getParameter("adresse");
+			boolean role = Integer.parseInt(request.getParameter("role"))!=0?true:false;
+			
+			//Modification
+			Utilisateur utilisateur = new Utilisateur(id, mail, mp, nom, prenom, datenaissance, adresse, role);
+			utilisateur.Update();
+			
+			//Update la liste
 			List<Utilisateur> listuser = Utilisateur.List();
 			request.setAttribute("listutilisateur", listuser);
 			
+			//Redirection
 			request.setAttribute("titre", "Gestion des Utilisateurs");
 			getServletContext().getRequestDispatcher("/Vues/Utilisateur\\listutilisateur.jsp").forward(request, response);
-		} 
-	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		}
+		
+		//Supprimer un utilisateur
+		if(request.getParameter("delete") != null)
+		{
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			Utilisateur mar = new Utilisateur();
+			mar = mar.Trouver(id); 
+			mar.Delete(); //Supression
+			
+			//Update la liste
+			List<Utilisateur> listuser = Utilisateur.List();
+			request.setAttribute("listutilisateur", listuser);
+			
+			//Redirection
+			request.setAttribute("titre", "Gestion des Utilisateurs");
+			getServletContext().getRequestDispatcher("/Vues/Utilisateur\\listutilisateur.jsp").forward(request, response);
+		}
 	}
 
 }

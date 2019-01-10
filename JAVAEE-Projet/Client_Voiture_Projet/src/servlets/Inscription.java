@@ -24,6 +24,12 @@ public class Inscription extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
+		request.setAttribute("titre", "Inscription");
+		getServletContext().getRequestDispatcher("/Vues/Compte\\inscription.jsp").forward(request, response);
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		if(request.getParameter("insert") != null)
 		{
 			SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
@@ -36,7 +42,6 @@ public class Inscription extends HttpServlet {
 			try {
 				datenaissance = formatter.parse(request.getParameter("datenaissance"));
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			String adresse = request.getParameter("adresse");
@@ -47,17 +52,7 @@ public class Inscription extends HttpServlet {
 			
 			request.setAttribute("titre", "Gestion des Utilisateurs");
 			getServletContext().getRequestDispatcher("/Vues/Compte\\login.jsp").forward(request, response);
-			//response.sendRedirect("/Client_Voiture_Projet/GestionUtilisateur");
 		}
-		else 
-		{
-			request.setAttribute("titre", "Inscription");
-			getServletContext().getRequestDispatcher("/Vues/Compte\\inscription.jsp").forward(request, response);
-		}
-	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 }
