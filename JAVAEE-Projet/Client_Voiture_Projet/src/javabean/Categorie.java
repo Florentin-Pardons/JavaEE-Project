@@ -1,7 +1,6 @@
 package javabean;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -81,13 +80,5 @@ public class Categorie {
 	{
 		Categorie_DAO catDao = new Categorie_DAO();
 		return catDao.list();
-		
-		/*List<Categorie> cat = new ArrayList<Categorie>();
-		Categorie s = new Categorie(1, "4x4", "blabla");
-		Categorie ss = new Categorie(2, "suv", "yop");
-		cat.add(s);
-		cat.add(ss);*/
-		
-		//return cat;
 	}	
 }

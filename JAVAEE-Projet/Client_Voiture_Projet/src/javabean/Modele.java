@@ -1,8 +1,6 @@
 package javabean;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -122,15 +120,5 @@ public class Modele {
 	{
 		Modele_DAO modDao = new Modele_DAO();
 		return modDao.list();
-		
-		/*
-		List<Modele> mod = new ArrayList<Modele>();
-		Modele cc = new Modele(1, "c4", 55, 13, new Marque(1,"test", new Date(01/01/1990),"sdsf"), new Categorie(1, "4x4", "blabla"));
-		Modele ccc = new  Modele(2, "c5", 55, 13, new Marque(2,"hhhh", new Date(01/01/1990),"sdsf"), new Categorie(2, "suv", "yop"));
-		
-		mod.add(cc);
-		mod.add(ccc);
-		
-		return mod;*/
 	}
 }

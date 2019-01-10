@@ -2,7 +2,6 @@ package javabean;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -109,7 +108,6 @@ public class Voiture {
 		this.age = age;
 		this.dispo = dispo;
 		this.modele = modele;
-		//this.user = user;
 	}
 	
 	public Voiture(int id, String couleur, String carburant, String boiteVitesse, int nbkm, int age, boolean dispo, Modele modele) 
@@ -122,7 +120,6 @@ public class Voiture {
 		this.age = age;
 		this.dispo = dispo;
 		this.modele = modele;
-		//this.user = user;
 	}
 	
 	//Methode
@@ -154,17 +151,44 @@ public class Voiture {
 	//Creation de la liste
 	public static List<Voiture> List() throws JsonParseException, JsonMappingException, IOException
 	{
-		/*
 		Voiture_DAO voiDao = new Voiture_DAO();
-		return voiDao.list();*/
 		
+		//Remplir les elements manquants
+		List<Voiture> listvoiture = voiDao.list();
 		
-		List<Voiture> listvoiture = new ArrayList<Voiture>();
-		Voiture v1 = new Voiture(1, "jaune", "essence", "auto", 1500, 15, true, new Modele(1, "c4", 55, 13, new Marque(1,"test", new Date(01/01/1990),"sdsf"), new Categorie(1, "4x4", "blabla")));
-		Voiture v2 = new Voiture(2, "vert", "diessel", "auto", 2000, 20, true, new  Modele(2, "c5", 55, 13, new Marque(1,"hhhh", new Date(01/01/1990),"sdsf"), new Categorie(1, "suv", "yop")));
+		for(int i = 0; i < listvoiture.size(); i++)
+		{
+			Modele mod = new Modele();
+			mod = mod.Trouver(listvoiture.get(i).getModele().getId());
+			listvoiture.get(i).setModele(mod);
+			
+			Utilisateur user = new Utilisateur();
+			user = user.Trouver(listvoiture.get(i).getUtilisateur().getId());
+			listvoiture.get(i).setUtilisateur(user);			
+		}
 		
-		listvoiture.add(v1);
-		listvoiture.add(v2);
+		return listvoiture;
+	}
+	
+	//Creation de la liste
+	public static List<Voiture> List(Utilisateur user) throws JsonParseException, JsonMappingException, IOException
+	{
+		Voiture_DAO voiDao = new Voiture_DAO();
+		
+		//Remplir les elements manquants (Modele)
+		List<Voiture> listvoiture = voiDao.list();
+		
+		for(int i = 0; i < listvoiture.size(); i++)
+		{
+			Modele mod = new Modele();
+			mod = mod.Trouver(listvoiture.get(i).getModele().getId());
+			listvoiture.get(i).setModele(mod);			
+		}
+		
+		//Trier la liste pour ne retourner que les éléments de l'utilisateur
+		listvoiture = listvoiture.stream()
+				.filter(v -> v.getUtilisateur().getId() == user.getId())
+                .collect(Collectors.toList());
 		
 		return listvoiture;
 	}

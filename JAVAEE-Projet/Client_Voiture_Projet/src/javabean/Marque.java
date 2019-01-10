@@ -1,7 +1,6 @@
 package javabean;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -93,16 +92,6 @@ public class Marque {
 	{
 		Marque_DAO marDao = new Marque_DAO();
 		return marDao.list();
-		
-		/*
-		List<Marque> listmarque = new ArrayList<Marque>();
-		Marque m1 = new Marque(1,"test", new Date(01/01/1990),"sdsf");
-		Marque m2 = new Marque(2,"hhhh", new Date(01/01/1990),"sdsf");
-		
-		listmarque.add(m1);
-		listmarque.add(m2);
-		
-		return listmarque;*/
 		
 	}
 }

@@ -22,7 +22,6 @@ public class Utilisateur {
 	private String adresse;
 	private boolean role;
 	private List<Voiture> listVoiture;
-	private List<Reservation> listReservation;
 
 	//Getter et Setteur
 	public int getId() {
@@ -96,14 +95,6 @@ public class Utilisateur {
 	public void setListVoiture(List<Voiture> listVoiture) {
 		this.listVoiture = listVoiture;
 	}
-
-	public List<Reservation> getListReservation() {
-		return listReservation;
-	}
-
-	public void setListReservation(List<Reservation> listReservation) {
-		this.listReservation = listReservation;
-	}
 	
 	//Constructeur
 	public Utilisateur(String mail, String mp)
@@ -121,7 +112,6 @@ public class Utilisateur {
 		this.adresse = adresse;
 		this.role = role;
 		this.listVoiture = new ArrayList<Voiture>();
-		this.listReservation = new ArrayList<Reservation>();
 	}
 	
 	public Utilisateur(int id, String mail, String mp, String nom, String prenom, Date dateNaissance, String adresse, boolean role) 
@@ -135,7 +125,6 @@ public class Utilisateur {
 		this.adresse = adresse;
 		this.role = role;
 		this.listVoiture = new ArrayList<Voiture>();
-		this.listReservation = new ArrayList<Reservation>();
 	}
 	
 	//Methode
@@ -169,50 +158,19 @@ public class Utilisateur {
 	{
 		Utilisateur_DAO userDao = new Utilisateur_DAO();
 		return userDao.list();
-		
-		/*
-		List<Utilisateur> list = new ArrayList<Utilisateur>();
-		Utilisateur user1 = new Utilisateur(1, "admin","sss", "tsssss", "sedfsfd", new Date(01/01/1990), "sfhjkdnf", true);
-		Utilisateur user2 = new Utilisateur(2, "user","sss", "tsssss", "sedfsfd", new Date(01/01/1990), "sfhjkdnf", false);
-		list.add(user1);
-		list.add(user2);
-		return list;*/
 	}
 	
 	//Verifie le login
 	public Utilisateur verif(String mail, String mp) throws JsonParseException, JsonMappingException, IOException
 	{
+		List<Utilisateur> listuser = Utilisateur.List();
 		
-		if(mail.equals("test") && mp.equals("test"))
+		for(Utilisateur u : listuser)
 		{
-			Utilisateur user = new Utilisateur(1,"admin","sss", "tsssss", "sedfsfd", new Date(01/01/1990), "sfhjkdnf", false);
-			return user;
-		}
-		else
-		{
-			List<Utilisateur> listuser = Utilisateur.List();
-			
-			for(Utilisateur u : listuser)
-			{
-				if(u.getMail().equals(mail) && u.getMp().equals(mp))
-					return u;
-			}
-			
-			return null;
+			if(u.getMail().equals(mail) && u.getMp().equals(mp))
+				return u;
 		}
 		
-		/*
-		if(mail.equals("test") && mp.equals("test"))
-		{
-			Utilisateur user = new Utilisateur(1,"admin","sss", "tsssss", "sedfsfd", new Date(01/01/1990), "sfhjkdnf", true);
-			return user;
-		}
-		else if(mail.equals("testeur") && mp.equals("testeur"))
-		{
-			Utilisateur user = new Utilisateur(2, "user","sss", "tsssss", "sedfsfd", new Date(01/01/1990), "sfhjkdnf", false);
-			return user;
-		}
-		else
-			return null;*/
+		return null;
 	}
 }
