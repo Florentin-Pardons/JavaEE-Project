@@ -21,7 +21,6 @@ public class Categorie_DAO {
 	public boolean create(Categorie cat) throws JsonParseException, JsonMappingException, IOException
 	{		
 		MultivaluedMap<String,String> params = new MultivaluedMapImpl();
-		//params.add("id", Integer.toString(cat.getId()));
 		params.add("nom", cat.getNom());
 		params.add("description",cat.getDescription());
 		
@@ -29,7 +28,6 @@ public class Categorie_DAO {
 				.path("categorie")
 				.type("application/x-www-form-urlencoded")
 				.post(ClientResponse.class, params);
-		System.out.println(jsonAnswer); //
 		
 		if(jsonAnswer.getStatus() == 200) //update ok
 			return true;
@@ -44,7 +42,6 @@ public class Categorie_DAO {
 				.path("categorie")
 				.queryParam("id", Integer.toString(cat.getId()))
 				.delete(ClientResponse.class);
-		System.out.println(jsonAnswer); //
 		
 		if(jsonAnswer.getStatus() == 200) //update ok
 			return true;
@@ -64,7 +61,6 @@ public class Categorie_DAO {
 				.path("categorie")
 				.type("application/x-www-form-urlencoded")
 				.put(ClientResponse.class, params);
-		System.out.println(jsonAnswer); //
 		
 		if(jsonAnswer.getStatus() == 200) //update ok
 			return true;
@@ -80,7 +76,6 @@ public class Categorie_DAO {
 				.queryParam("id", Integer.toString(id))
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
-		System.out.println(jsonAnswer); //
 		
 		ObjectMapper mapper = new ObjectMapper();
 		Categorie cat = mapper.readValue(jsonAnswer, Categorie.class);
@@ -95,7 +90,6 @@ public class Categorie_DAO {
 				.path("categorie/all")
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
-		System.out.println(jsonAnswer); //
 		
 		ObjectMapper mapper = new ObjectMapper();
 		List<Categorie> cat = mapper.readValue(jsonAnswer, new TypeReference<List<Categorie>>() {});

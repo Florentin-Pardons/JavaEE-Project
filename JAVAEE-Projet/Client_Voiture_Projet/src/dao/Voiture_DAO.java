@@ -34,7 +34,6 @@ public class Voiture_DAO {
 				.path("voiture")
 				.type("application/x-www-form-urlencoded")
 				.post(ClientResponse.class, params);
-		System.out.println(jsonAnswer); //
 		
 		if(jsonAnswer.getStatus() == 200) //update ok
 			return true;
@@ -49,7 +48,6 @@ public class Voiture_DAO {
 				.path("voiture")
 				.queryParam("id", Integer.toString(voi.getId()))
 				.delete(ClientResponse.class);
-		System.out.println(jsonAnswer); //
 		
 		if(jsonAnswer.getStatus() == 200) //update ok
 			return true;
@@ -74,7 +72,6 @@ public class Voiture_DAO {
 				.path("voiture")
 				.type("application/x-www-form-urlencoded")
 				.put(ClientResponse.class, params);
-		System.out.println(jsonAnswer); //
 		
 		if(jsonAnswer.getStatus() == 200) //update ok
 			return true;
@@ -90,7 +87,6 @@ public class Voiture_DAO {
 				.queryParam("id", Integer.toString(id))
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
-		System.out.println(jsonAnswer); //
 		
 		jsonAnswer = jsonAnswer.replaceAll("\\[UTC]","");
 		
@@ -107,10 +103,8 @@ public class Voiture_DAO {
 				.path("voiture/all")
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
-		System.out.println(jsonAnswer); //
 		
 		jsonAnswer = jsonAnswer.replaceAll("\\[UTC]","");
-		System.out.println(jsonAnswer); //
 		
 		ObjectMapper mapper = new ObjectMapper();
 		List<Voiture> voi = mapper.readValue(jsonAnswer, new TypeReference<List<Voiture>>() {});

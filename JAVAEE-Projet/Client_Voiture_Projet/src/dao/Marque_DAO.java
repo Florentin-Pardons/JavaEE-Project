@@ -24,7 +24,6 @@ public class Marque_DAO {
 	{		
 		DateFormat dateform = new SimpleDateFormat("dd/MM/yyyy");
 		MultivaluedMap<String,String> params = new MultivaluedMapImpl();
-		//params.add("id", Integer.toString(mar.getId()));
 		params.add("nom", mar.getNom());
 		params.add("datecrea", dateform.format(mar.getDateCrea()));
 		params.add("paysorigine", mar.getPaysOrigine());
@@ -33,7 +32,6 @@ public class Marque_DAO {
 				.path("marque")
 				.type("application/x-www-form-urlencoded")
 				.post(ClientResponse.class, params);
-		System.out.println(jsonAnswer); //
 		
 		if(jsonAnswer.getStatus() == 200) //update ok
 			return true;
@@ -48,7 +46,6 @@ public class Marque_DAO {
 				.path("marque")
 				.queryParam("id", Integer.toString(mar.getId()))
 				.delete(ClientResponse.class);
-		System.out.println(jsonAnswer); //
 		
 		if(jsonAnswer.getStatus() == 200) //update ok
 			return true;
@@ -70,7 +67,6 @@ public class Marque_DAO {
 				.path("marque")
 				.type("application/x-www-form-urlencoded")
 				.put(ClientResponse.class, params);
-		System.out.println(jsonAnswer); //
 		
 		if(jsonAnswer.getStatus() == 200) //update ok
 			return true;
@@ -86,7 +82,6 @@ public class Marque_DAO {
 				.queryParam("id", Integer.toString(id))
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
-		System.out.println(jsonAnswer); //
 		
 		jsonAnswer = jsonAnswer.replaceAll("\\[UTC]","");
 		
@@ -103,10 +98,8 @@ public class Marque_DAO {
 				.path("marque/all")
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
-		System.out.println(jsonAnswer); //
 		
 		jsonAnswer = jsonAnswer.replaceAll("\\[UTC]","");
-		System.out.println(jsonAnswer); //
 		
 		ObjectMapper mapper = new ObjectMapper();
 		List<Marque> mar = mapper.readValue(jsonAnswer, new TypeReference<List<Marque>>() {});

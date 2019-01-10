@@ -31,7 +31,6 @@ public class Modele_DAO {
 				.path("modele")
 				.type("application/x-www-form-urlencoded")
 				.post(ClientResponse.class, params);
-		System.out.println(jsonAnswer); //
 		
 		if(jsonAnswer.getStatus() == 200) //update ok
 			return true;
@@ -46,7 +45,6 @@ public class Modele_DAO {
 				.path("modele")
 				.queryParam("id", Integer.toString(mod.getId()))
 				.delete(ClientResponse.class);
-		System.out.println(jsonAnswer); //
 		
 		if(jsonAnswer.getStatus() == 200) //update ok
 			return true;
@@ -69,7 +67,6 @@ public class Modele_DAO {
 				.path("modele")
 				.type("application/x-www-form-urlencoded")
 				.put(ClientResponse.class, params);
-		System.out.println(jsonAnswer); //
 		
 		if(jsonAnswer.getStatus() == 200) //update ok
 			return true;
@@ -85,7 +82,6 @@ public class Modele_DAO {
 				.queryParam("id", Integer.toString(id))
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
-		System.out.println(jsonAnswer); //
 		
 		jsonAnswer = jsonAnswer.replaceAll("\\[UTC]","");
 		
@@ -102,10 +98,8 @@ public class Modele_DAO {
 				.path("modele/all")
 				.accept(MediaType.APPLICATION_JSON)
 				.get(String.class);
-		System.out.println(jsonAnswer); //
 		
 		jsonAnswer = jsonAnswer.replaceAll("\\[UTC]","");
-		System.out.println(jsonAnswer); //
 		
 		ObjectMapper mapper = new ObjectMapper();
 		List<Modele> mod = mapper.readValue(jsonAnswer, new TypeReference<List<Modele>>() {});
