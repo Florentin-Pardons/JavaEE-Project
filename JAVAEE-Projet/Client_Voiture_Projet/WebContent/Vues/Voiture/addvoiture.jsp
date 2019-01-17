@@ -7,7 +7,7 @@
 <%@ include file='/Vues/Canva\\header.jsp' %>
 
 <h2>Ajouter une Voiture</h2>
-<form action="/Client_Voiture_Projet/GestionModele" method="POST">
+<form action="/Client_Voiture_Projet/GestionVoiture" method="POST">
 	<table border="1" cellspacing="0" cellpadding="5">
 		<tr>
 		    <td> Couleur : </td>
@@ -24,6 +24,10 @@
 		<tr>
 		    <td> Nombre de Kilometre : </td>
 		    <td><input type="text" name="nbkm" id="nbkm" value="" size="20"/></td>
+		</tr>
+		<tr>
+		    <td> Age : </td>
+		    <td><input type="text" name="age" id="age" value="" size="20"/></td>
 		</tr>
 		<tr>
 		    <td> Disponibilité: </td>
@@ -51,6 +55,7 @@
 						{
 							mar = mod.getMarque().getNom();
 							out.println("<optgroup label=" + mar + ">");
+							out.println("<option value=" + mod.getId() + ">" + mod.getNom() + "</option>");
 						}
 						else 
 						{

@@ -32,6 +32,10 @@
 		    <td><input type="text" name="nbkm" id="nbkm" value="<% out.println(voi.getNbkm()); %>" size="20"/></td>
 		</tr>
 		<tr>
+		    <td> Age : </td>
+		    <td><input type="text" name="age" id="age" value="<% out.println(voi.getAge()); %>" size="20"/></td>
+		</tr>
+		<tr>
 		    <td> Disponibilité: </td>
 		    <td>
 			    <div class="form-group">
@@ -49,10 +53,32 @@
        		<td>
        			<select name="modele" id="modele">
        			<%
+       				String mar = "";
+       			
 					for(Modele mod : listmodele)
 					{
-						out.println("<option value=" + mod.getId() + ">" + mod.getNom() + "</option>");
+						if(mar.equals(""))
+						{
+							mar = mod.getMarque().getNom();
+							out.println("<optgroup label=" + mar + ">");
+							out.println("<option value=" + mod.getId() + ">" + mod.getNom() + "</option>");
+						}
+						else 
+						{
+							if(mar.equals(mod.getMarque().getNom()))
+							{
+								out.println("<option value=" + mod.getId() + ">" + mod.getNom() + "</option>");
+							}
+							else
+							{
+								out.println("</optgroup>");
+								mar = mod.getMarque().getNom();
+								out.println("<optgroup label=" + mar + ">");
+								out.println("<option value=" + mod.getId() + ">" + mod.getNom() + "</option>");
+							}
+						}
 					}
+					out.println("</optgroup>");
 				%>
        			</select>
        		</td>

@@ -1,6 +1,7 @@
 package javabean;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -119,6 +120,11 @@ public class Modele {
 	public static List<Modele> List() throws JsonParseException, JsonMappingException, IOException
 	{
 		Modele_DAO modDao = new Modele_DAO();
-		return modDao.list();
+		
+		List<Modele> list = modDao.list();
+		list.sort(Comparator.comparing(Modele::getNom));
+		return list;
+		
+		//return modDao.list();		 
 	}
 }

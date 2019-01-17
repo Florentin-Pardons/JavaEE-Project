@@ -5,7 +5,7 @@
 <div>
     <h2>Erreur</h2>
     <p>
-        <%  out.println(session.getAttribute("erreur")); %>
+        <%  out.println((String) request.getAttribute("erreur")); %>
     </p> 
 </div>
 
